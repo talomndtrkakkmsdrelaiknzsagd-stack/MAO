@@ -413,6 +413,11 @@
       border-bottom: 1px solid var(--line);
     }
 
+    .problem-row.calc-row {
+      grid-template-columns: 58px minmax(0, 1fr);
+      gap: 20px;
+    }
+
     .problem-row:last-child { border-bottom: 0; }
 
     .problem-no {
@@ -426,6 +431,19 @@
       color: #4e5967;
       font-weight: 800;
       font-variant-numeric: tabular-nums;
+    }
+
+    .calc-row .problem-no::after {
+      content: "题";
+      margin-left: 2px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .calc-row .problem-no {
+      min-width: 46px;
+      background: #e9f2ff;
+      color: #2459b7;
     }
 
     .problem-body {
@@ -1107,7 +1125,7 @@
           : "";
         const expression = `${formatMathText(item.q)}${options.equals ? " =" : ""}`;
         return `
-          <div class="problem-row">
+          <div class="problem-row ${options.rowClass || ""}">
             <span class="problem-no">${index + 1}</span>
             <div class="problem-body">
               ${meta}
@@ -1218,7 +1236,7 @@
         </article>
         <article class="material-card">
           <h3>计算练习 20 题</h3>
-          ${renderProblemRows(calculations, { prefix: "calcAnswer", equals: true, placeholder: () => "答案" })}
+          ${renderProblemRows(calculations, { prefix: "calcAnswer", equals: true, rowClass: "calc-row", placeholder: () => "答案" })}
           <div class="footer-actions">
             <button id="gradeCalc" type="button" class="primary">批改计算</button>
             <button type="button" class="answerBtn">看计算答案</button>
