@@ -1,0 +1,1747 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>五升六暑假学习台</title>
+  <style>
+    :root {
+      --ink: #22242a;
+      --muted: #68707c;
+      --line: #d9dde5;
+      --paper: #fbfaf6;
+      --bg: #eef3f5;
+      --blue: #2d6cdf;
+      --green: #237a57;
+      --red: #c55245;
+      --amber: #b07418;
+      --violet: #6a55b8;
+      --white: #ffffff;
+      --shadow: 0 10px 28px rgba(32, 40, 54, .08);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,0) 240px),
+        var(--bg);
+    }
+
+    header {
+      padding: 24px clamp(16px, 4vw, 48px) 16px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .term-switch {
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      flex-shrink: 0;
+    }
+
+    .term-switch button,
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--ink);
+      border-radius: 8px;
+      min-height: 40px;
+      padding: 0 14px;
+      cursor: pointer;
+    }
+
+    button:hover { border-color: #9aa5b5; }
+    button.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 22px clamp(16px, 4vw, 48px) 48px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+      gap: 22px;
+    }
+
+    section {
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .section-head {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(255,255,255,.74);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 19px;
+      letter-spacing: 0;
+    }
+
+    .content { padding: 18px; }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 12px;
+      min-height: 76px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 23px;
+      line-height: 1.2;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .task-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .task {
+      display: grid;
+      grid-template-columns: 30px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      min-height: 58px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 10px 12px;
+    }
+
+    .task input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--green);
+    }
+
+    .task-title {
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .task-note {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      margin-top: 3px;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    .tag.cn { background: var(--red); }
+    .tag.math { background: var(--blue); }
+    .tag.habit { background: var(--green); }
+    .tag.parent { background: var(--violet); }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .primary {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+    }
+
+    .danger {
+      color: var(--red);
+      border-color: #e2b6af;
+    }
+
+    .timer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .time {
+      font-size: clamp(34px, 6vw, 54px);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      font-weight: 800;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 11px;
+      background: #fff;
+      color: var(--ink);
+      min-height: 40px;
+    }
+
+    textarea {
+      min-height: 92px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .week {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 12px;
+    }
+
+    .week-date {
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1.35;
+    }
+
+    .week ul {
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.65;
+    }
+
+    .log-list {
+      display: grid;
+      gap: 8px;
+      max-height: 280px;
+      overflow: auto;
+      padding-right: 2px;
+    }
+
+    .log-item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 10px 12px;
+      line-height: 1.55;
+    }
+
+    .log-item b { color: var(--amber); }
+
+    .writing-box {
+      background:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px),
+        #fff;
+      background-size: 36px 36px;
+      min-height: 180px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      line-height: 36px;
+      font-size: 22px;
+    }
+
+    .prompt {
+      border-left: 4px solid var(--green);
+      padding: 10px 12px;
+      background: #f2faf6;
+      border-radius: 0 8px 8px 0;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .material-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 14px;
+      line-height: 1.65;
+    }
+
+    .material-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .material-card p {
+      margin: 8px 0;
+    }
+
+    .material-card ol {
+      margin: 8px 0 0;
+      padding-left: 22px;
+    }
+
+    .material-card li {
+      margin: 8px 0;
+    }
+
+    .material-card li input {
+      width: min(180px, 100%);
+      margin-top: 6px;
+    }
+
+    .material-card li label {
+      margin-top: 6px;
+      max-width: 220px;
+    }
+
+    .problem-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .problem-row {
+      display: grid;
+      grid-template-columns: 38px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .problem-row:last-child { border-bottom: 0; }
+
+    .problem-no {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 28px;
+      border-radius: 8px;
+      background: #eef3f5;
+      color: #4e5967;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .problem-body {
+      min-width: 0;
+      line-height: 1.8;
+    }
+
+    .problem-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .level-mark {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border-radius: 999px;
+      padding: 2px 8px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .level-mark.review { background: var(--green); }
+    .level-mark.preview { background: var(--violet); }
+
+    .formula {
+      font-size: 18px;
+      font-weight: 650;
+    }
+
+    .reading-text {
+      display: grid;
+      gap: 10px;
+      line-height: 1.85;
+      font-size: 15px;
+    }
+
+    .reading-text p {
+      margin: 0;
+      text-indent: 2em;
+    }
+
+    .reading-block {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .reading-block:last-of-type { border-bottom: 0; }
+
+    .reading-block h4 {
+      margin: 0 0 10px;
+      font-size: 15px;
+    }
+
+    .knowledge-list {
+      display: grid;
+      gap: 8px;
+      margin: 10px 0 14px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #cfd8e6;
+      background: #f6f9ff;
+      line-height: 1.65;
+    }
+
+    .knowledge-list b { color: var(--blue); }
+
+    .frac {
+      display: inline-grid;
+      grid-template-rows: auto auto;
+      align-items: center;
+      justify-items: center;
+      min-width: 1.25em;
+      margin: 0 .12em;
+      vertical-align: middle;
+      line-height: 1.05;
+      transform: translateY(-.05em);
+    }
+
+    .frac .top {
+      display: block;
+      width: 100%;
+      border-bottom: 1.6px solid currentColor;
+      padding: 0 .12em .05em;
+      text-align: center;
+      font-size: .78em;
+    }
+
+    .frac .bottom {
+      display: block;
+      padding: .05em .12em 0;
+      text-align: center;
+      font-size: .78em;
+    }
+
+    .voice-wrap {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: end;
+    }
+
+    .voice-btn {
+      min-width: 44px;
+      padding: 0 10px;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .voice-btn.listening {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+
+    .voice-status {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .answer {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      background: #f7f7fb;
+      color: #39404a;
+      border: 1px dashed #b7becb;
+    }
+
+    .answer.show { display: block; }
+
+    .grade-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .grade-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 14px;
+    }
+
+    .math-answer-row {
+      display: grid;
+      grid-template-columns: 1fr minmax(120px, 180px);
+      gap: 10px;
+      align-items: end;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .math-answer-row:last-child { border-bottom: 0; }
+
+    .result-pill {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 4px 9px;
+      margin: 4px 6px 0 0;
+      color: #fff;
+      font-size: 12px;
+    }
+
+    .result-pill.ok { background: var(--green); }
+    .result-pill.warn { background: var(--amber); }
+    .result-pill.bad { background: var(--red); }
+
+    .footer-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 920px) {
+      .topbar { align-items: start; flex-direction: column; }
+      main { grid-template-columns: 1fr; }
+      .metric-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .material-grid { grid-template-columns: 1fr; }
+      .grade-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      header { padding-top: 18px; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .math-answer-row { grid-template-columns: 1fr; }
+      .task { grid-template-columns: 28px 1fr; }
+      .task .tag { grid-column: 2; width: max-content; }
+      .week { grid-template-columns: 1fr; }
+      .section-head { align-items: start; flex-direction: column; }
+      .timer { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      header, .toolbar, .timer, .footer-actions, .tabs button, .danger { display: none; }
+      main { display: block; padding: 0; }
+      section { box-shadow: none; margin-bottom: 12px; break-inside: avoid; }
+      .tab-panel { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <div>
+        <h1>五升六暑假学习台</h1>
+        <p class="subtitle">人教版方向：语文阅读与作文、书写；数学应用题与细心习惯。习惯优先，提分跟进。</p>
+      </div>
+      <div class="term-switch" aria-label="月份切换">
+        <button id="julyBtn" class="active" type="button">7月</button>
+        <button id="augBtn" type="button">8月</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div>
+      <section>
+        <div class="section-head">
+          <h2>今日任务</h2>
+          <div class="toolbar">
+            <input id="studyDate" type="date" aria-label="学习日期" />
+            <button id="resetDay" type="button" class="danger">重置今日</button>
+          </div>
+        </div>
+        <div class="content">
+          <div class="metric-row">
+            <div class="metric"><strong id="doneCount">0/0</strong><span>完成任务</span></div>
+            <div class="metric"><strong id="score">0</strong><span>习惯积分</span></div>
+            <div class="metric"><strong id="focusPlan">90</strong><span>建议分钟</span></div>
+            <div class="metric"><strong id="streak">0</strong><span>连续打卡</span></div>
+          </div>
+          <div id="taskList" class="task-list"></div>
+          <div class="timer">
+            <div>
+              <div class="time" id="timeLeft">25:00</div>
+              <div class="task-note">专注 25 分钟，休息 5 分钟。完成后记录一次“我做对了什么”。</div>
+            </div>
+            <div class="toolbar">
+              <button id="startTimer" type="button" class="primary">开始</button>
+              <button id="pauseTimer" type="button">暂停</button>
+              <button id="resetTimer" type="button">复位</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top:22px;">
+        <div class="section-head">
+          <h2>今日素材包</h2>
+          <div class="toolbar">
+            <button id="prevMaterial" type="button">前一天</button>
+            <button id="nextMaterial" type="button">后一天</button>
+          </div>
+        </div>
+        <div class="content">
+          <div class="prompt" id="materialFocus"></div>
+          <div id="dailyMaterial" class="material-grid"></div>
+        </div>
+      </section>
+
+      <section style="margin-top:22px;">
+        <div class="section-head">
+          <h2>学习记录</h2>
+          <div class="tabs">
+            <button class="tabBtn active" type="button" data-tab="read">阅读</button>
+            <button class="tabBtn" type="button" data-tab="essay">作文</button>
+            <button class="tabBtn" type="button" data-tab="error">错题</button>
+            <button class="tabBtn" type="button" data-tab="hand">书写</button>
+            <button class="tabBtn" type="button" data-tab="grade">批改</button>
+          </div>
+        </div>
+        <div class="content">
+          <div id="read" class="tab-panel active">
+            <div class="grid-2">
+              <div class="form-grid">
+                <label>书名/文章名<input id="bookTitle" placeholder="例：《草房子》第三章" /></label>
+                <label>一句话概括<textarea id="readingSummary" placeholder="谁在什么情况下做了什么，结果怎样。"></textarea></label>
+                <label>一个好句<textarea id="readingSentence" placeholder="摘一句，再写为什么好。"></textarea></label>
+                <button id="saveReading" type="button" class="primary">保存阅读</button>
+              </div>
+              <div class="log-list" id="readingLog"></div>
+            </div>
+          </div>
+
+          <div id="essay" class="tab-panel">
+            <div class="prompt" id="essayPrompt"></div>
+            <div class="form-grid">
+              <label>作文题目<input id="essayTitle" /></label>
+              <label>开头三句话<textarea id="essayStart" placeholder="第一句点题，第二句写场景，第三句写冲突或感受。"></textarea></label>
+              <label>细节描写<textarea id="essayDetail" placeholder="动作、语言、神态、心理至少选两种。"></textarea></label>
+              <div class="footer-actions">
+                <button id="newPrompt" type="button">换题</button>
+                <button id="saveEssay" type="button" class="primary">保存作文</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="error" class="tab-panel">
+            <div class="grid-2">
+              <div class="form-grid">
+                <label>学科
+                  <select id="errorSubject">
+                    <option>数学</option>
+                    <option>语文</option>
+                  </select>
+                </label>
+                <label>题目/问题<textarea id="errorQuestion"></textarea></label>
+                <label>错因
+                  <select id="errorReason">
+                    <option>审题漏字</option>
+                    <option>条件没找全</option>
+                    <option>关系没画清</option>
+                    <option>计算粗心</option>
+                    <option>表达不完整</option>
+                    <option>知识点不会</option>
+                  </select>
+                </label>
+                <label>正确思路<textarea id="errorFix"></textarea></label>
+                <button id="saveError" type="button" class="primary">保存错题</button>
+              </div>
+              <div class="log-list" id="errorLog"></div>
+            </div>
+          </div>
+
+          <div id="hand" class="tab-panel">
+            <div class="prompt">每日 10-15 分钟：慢、正、匀、齐。先临写一行，再默写一行，最后自己圈出最好看的 3 个字。</div>
+            <div class="writing-box" contenteditable="true" aria-label="书写练习格"></div>
+          </div>
+
+          <div id="grade" class="tab-panel">
+            <div class="log-list" id="gradeLog"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div>
+      <section>
+        <div class="section-head">
+          <h2>暑假路线图</h2>
+          <button id="printPlan" type="button">打印</button>
+        </div>
+        <div class="content">
+          <div id="timeline" class="timeline"></div>
+        </div>
+      </section>
+
+      <section style="margin-top:22px;">
+        <div class="section-head">
+          <h2>家长检查</h2>
+          <span class="tag parent">5分钟</span>
+        </div>
+        <div class="content">
+          <div class="task-list">
+            <div class="task">
+              <input type="checkbox" class="parentCheck" />
+              <div><div class="task-title">看完成，不讲太久</div><div class="task-note">只问：今天最认真的是哪一项？</div></div>
+              <span class="tag parent">反馈</span>
+            </div>
+            <div class="task">
+              <input type="checkbox" class="parentCheck" />
+              <div><div class="task-title">抽查一题或一段</div><div class="task-note">数学看步骤，语文看依据和表达。</div></div>
+              <span class="tag parent">抽查</span>
+            </div>
+            <div class="task">
+              <input type="checkbox" class="parentCheck" />
+              <div><div class="task-title">记录一个进步</div><div class="task-note">夸具体行为：审题圈关键词、作文加细节、字写端正。</div></div>
+              <span class="tag parent">鼓励</span>
+            </div>
+          </div>
+          <div class="footer-actions">
+            <button id="exportData" type="button">导出记录</button>
+            <button id="clearData" type="button" class="danger">清空记录</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    function formatDate(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    const today = formatDate(new Date());
+    const state = JSON.parse(localStorage.getItem("studyState") || '{"tasks":{},"reading":[],"essay":[],"errors":[],"grades":[],"score":0,"focus":0}');
+    state.grades = state.grades || [];
+    let monthMode = "july";
+    let timerId = null;
+    let seconds = 25 * 60;
+
+    const dailyPlans = {
+      july: {
+        minutes: 90,
+        tasks: [
+          ["语文阅读理解 1 篇", "先读题，再带问题读文章；每题画依据。", "cn"],
+          ["作文素材 1 条", "人物动作、一次冲突、一个感受，三选一。", "cn"],
+          ["书写 10 分钟", "慢写一行，默写一行，圈出 3 个好字。", "habit"],
+          ["数学应用题 8 题 + 计算 20 题", "应用题覆盖多题型；计算题限时但先保证准确。", "math"],
+          ["错题复盘 1-2 题", "写错因，不只改答案。", "habit"]
+        ]
+      },
+      august: {
+        minutes: 180,
+        tasks: [
+          ["语文阅读理解 2 篇", "一篇精做，一篇限时；答案必须回到原文。", "cn"],
+          ["作文训练 1 次", "每周两篇完整作文，其余天练开头和细节段。", "cn"],
+          ["书写 15 分钟", "临写、默写、修正各 5 分钟。", "habit"],
+          ["数学综合训练", "8 道混合应用题 + 20 道计算题，难易搭配。", "math"],
+          ["六年级预习 30 分钟", "数学先概念再例题；语文先字词再朗读。", "math"],
+          ["当天复盘 10 分钟", "整理 1 个收获、1 个错因、1 个明天目标。", "habit"]
+        ]
+      }
+    };
+
+    const route = {
+      july: [
+        ["第1周", ["建立固定时段：补习班之外每天 1.5 小时起步。", "语文：阅读题找依据，作文积累人物与事件素材。", "数学：应用题审题三步，先慢后准。"]],
+        ["第2周", ["语文：每篇阅读写“答案来自哪一句”。", "数学：分数、小数、单位换算相关应用题。", "习惯：错题本只写错因和正确思路。"]],
+        ["第3周", ["语文：练概括题、含义题、人物形象题。", "数学：画线段图、列表法解决复杂条件。", "书写：每日固定 10 分钟，不求多。"]],
+        ["第4周", ["语文：完成 1 篇记事作文精修。", "数学：综合应用题限时训练。", "家长：减少提醒次数，改用任务清单。"]]
+      ],
+      august: [
+        ["第1周", ["五年级薄弱点集中补：阅读理解、作文结构、应用题。", "六上数学预习：分数乘法、位置与方向。", "语文预习：朗读课文、字词、段意。"]],
+        ["第2周", ["数学：分数除法、比的意义，应用题画关系。", "语文：说明文/叙事文阅读各练 3 篇。", "作文：写人、记事各 1 篇。"]],
+        ["第3周", ["数学：圆、百分数基础预习。", "语文：古诗文背诵与理解。", "错题：按错因分类复测。"]],
+        ["第4周", ["开学节奏模拟：上午学习，下午运动阅读。", "语文：整理 10 条作文素材。", "数学：做一套综合卷，重在复盘。"]]
+      ]
+    };
+
+    const prompts = [
+      "写一次你坚持完成的事情。重点写中间想放弃的一刻，以及你怎么调整。",
+      "写一个身边熟悉的人。不要只写品质，选一件小事表现他/她。",
+      "写一次误会或冲突。把对话、表情、心理变化写清楚。",
+      "写一次暑假里的普通一天。选一个细节写出不普通的感受。",
+      "写一件让你后悔或成长的事。结尾写明白的道理，但不要空喊口号。"
+    ];
+
+    const readingSeeds = [
+      {
+        title: "楼下的旧书摊",
+        scene: "傍晚，小区门口支起了一个旧书摊。摊主把书一本本擦干净，又按故事、科普、工具书分成三排。",
+        turn: "我原本只想随便翻翻，却发现一本书的扉页上写着：送给愿意慢慢读的人。那一刻，我忽然放轻了翻书的手。",
+        end: "回家路上，书很轻，心里却像多了一盏小灯。原来认真对待旧东西，也是在认真对待自己的时间。"
+      },
+      {
+        title: "迟到的雨伞",
+        scene: "午后忽然下起大雨，操场边的香樟树被风吹得哗哗响。同学们挤在门厅里等家长。",
+        turn: "妈妈来得比别人晚，她的裤脚湿了一大片，手里却拿着我的伞。她说路口积水，只好绕了一圈。",
+        end: "我接过伞时没有抱怨，只把伞往她那边偏了偏。雨点落在伞面上，声音好像也变轻了。"
+      },
+      {
+        title: "一张草稿纸",
+        scene: "数学课后，桌面上留下许多草稿纸。有的只写了一个算式，有的画满了线段图和箭头。",
+        turn: "老师拿起我的草稿纸，说答案错了没关系，关系画清了就有路可走。我第一次觉得草稿不是废纸。",
+        end: "从那天起，我开始给草稿留空、标序号。题目还是会难，但思路不再乱成一团。"
+      },
+      {
+        title: "菜市场里的数学",
+        scene: "周末清晨，我陪外婆去菜市场。摊位前挂着红色价牌，叫卖声和秤盘声混在一起。",
+        turn: "外婆买了两种菜，让我估一估总价。我先算整元，再补角分，竟然比计算器慢不了多少。",
+        end: "回家的袋子沉甸甸的，我心里也有一点踏实：数学不是只待在练习本里，它藏在每天的生活里。"
+      },
+      {
+        title: "窗边的朗读声",
+        scene: "早晨，阳光斜斜地照在书桌上。我打开课本，先小声读，后来声音慢慢稳了起来。",
+        turn: "读到第二遍时，我发现一个长句子其实可以分成三层意思。停顿找准了，意思也清楚了。",
+        end: "原来朗读不是比谁声音大，而是让文字在嘴边走一遍，再在心里站稳。"
+      },
+      {
+        title: "没擦掉的错号",
+        scene: "练习册发下来后，我第一眼就看见红色的错号。它们像几粒小石子，硌得我不太舒服。",
+        turn: "我本想立刻擦掉，爸爸却让我先写错因。写到第三题，我才发现自己总是漏看“至少”两个字。",
+        end: "错号没有那么难看了。它像路标，告诉我下一次应该在哪里慢下来。"
+      },
+      {
+        title: "图书馆的安静",
+        scene: "图书馆里很安静，只听得见翻页声。窗外有人骑车经过，铃声一响又很快远了。",
+        turn: "我挑了一本科普书，读到蚂蚁搬家那一页时，忍不住把有趣的句子抄在本子上。",
+        end: "离开时，我没有借很多书，只借了一本真正想读完的。安静有时不是没有声音，而是心不乱跑。"
+      },
+      {
+        title: "一次重新开始",
+        scene: "下午的计划被我拖到了晚上。看着还没完成的清单，我有点烦，也有点想放弃。",
+        turn: "妈妈没有催我，只说先做最小的一项。我拿起笔，写完十分钟书写后，心慢慢定下来。",
+        end: "原来重新开始不需要很大的勇气，有时只需要先完成一件小事。"
+      }
+    ];
+
+    const weeklyFocus = [
+      "阅读：答案回原文；数学：审题圈关键词。",
+      "阅读：概括主要内容；数学：单位和数量关系。",
+      "阅读：人物形象与原因题；数学：线段图。",
+      "阅读：句子含义；数学：综合应用题。",
+      "语文：作文结构；数学：分数乘法预习。",
+      "语文：说明文信息提取；数学：分数除法与比。",
+      "语文：古诗文理解；数学：圆和百分数基础。",
+      "语文：素材整理；数学：综合复测。"
+    ];
+
+    const writingTargets = [
+      "写一次自己坚持完成的小事，重点写想放弃的一刻。",
+      "写一个熟悉的人，用一件小事表现特点。",
+      "写一次误会或争执，把对话写自然。",
+      "写一次做家务或外出经历，加入动作描写。",
+      "写一个让你印象深的地方，按观察顺序写。",
+      "写一次从错误中学到的事，结尾要自然。",
+      "写一件暑假里的普通小事，把细节写具体。",
+      "写一次帮助别人或被别人帮助的经历。"
+    ];
+
+    const handwritingLines = [
+      "少年易学老难成，一寸光阴不可轻。",
+      "纸上得来终觉浅，绝知此事要躬行。",
+      "读书不觉已春深，一寸光阴一寸金。",
+      "问渠那得清如许，为有源头活水来。",
+      "不积跬步，无以至千里；不积小流，无以成江海。",
+      "千磨万击还坚劲，任尔东西南北风。",
+      "博观而约取，厚积而薄发。",
+      "日日行，不怕千万里；常常做，不怕千万事。"
+    ];
+
+    function dayIndex() {
+      const parts = dateKey().split("-").map(Number);
+      const day = Math.min(31, Math.max(1, parts[2] || 1));
+      return day;
+    }
+
+    function materialNumber() {
+      return monthMode === "july" ? dayIndex() : dayIndex() + 31;
+    }
+
+    function makeReading(n) {
+      const seed = readingSeeds[(n - 1) % readingSeeds.length];
+      const extra = n % 2 === 0
+        ? "我在本子上写下两个词：慢一点，想清楚。写完后，刚才急躁的心情像被整理过一样。"
+        : "我没有急着下结论，而是又看了一遍细节。第二遍读完，事情的原因比第一次清楚多了。";
+      const paragraphs = [
+        seed.scene,
+        `一开始，我并没有把这件事放在心上。暑假里的时间好像被拉得很长，早晨可以慢慢醒来，下午也总觉得还来得及。可是，当我真正停下来观察时，才发现许多小事并不像表面那样简单。有人在认真整理东西，有人在默默赶路，也有人在一次次修改自己的错误。`,
+        seed.turn,
+        `我想起自己做题和读书时常有的样子：看见题目就急着写，看见文章就急着找答案。结果越想快，越容易漏掉条件；越想省事，越说不清理由。那天我试着放慢一点，把看到的细节按顺序想了一遍，又把最关键的一句话记在心里。${extra}`,
+        `后来，我发现真正有用的学习方法并不神秘。读文章时，要回到原文找依据；写作文时，要把动作、语言、神态写具体；做数学题时，要先弄清数量关系。每一步看起来都慢，其实是在给后面的准确铺路。`,
+        seed.end
+      ];
+      return {
+        title: `阅读 ${n}：《${seed.title}》`,
+        paragraphs,
+        text: paragraphs.join(""),
+        questions: [
+          "用一句话概括短文的主要内容。",
+          "文中人物的心情发生了什么变化？请结合一句原文说明。",
+          "短文第 4 自然段写“越想快，越容易漏掉条件”，这句话和学习习惯有什么关系？",
+          "你觉得结尾有什么作用？",
+          "从文中选择一个词语或句子，说说它好在哪里。",
+          "读完短文，你准备在今天的学习中改进哪一个小习惯？"
+        ],
+        answer: "参考：概括要写清“谁、做了什么、结果/感受”；心情题要先写变化，再引用依据；理解句子要联系上下文和学习习惯；结尾通常点明感受、呼应题目或引发思考。"
+      };
+    }
+
+    function makeMath(n) {
+      const a = 12 + n;
+      const b = 6 + (n % 7);
+      const c = 3 + (n % 5);
+      const d = 2 + (n % 4);
+      const e = 40 + n * 3;
+      const rate = 10 + (n % 5) * 5;
+      const speed1 = 45 + (n % 6) * 5;
+      const speed2 = 35 + (n % 5) * 4;
+      const hours = 2 + (n % 3);
+      const radius = 3 + (n % 4);
+      const width = 8 + (n % 5);
+      const length = width + 6 + (n % 4);
+      const base = 24 + n;
+      const ratioBase = 4 + (n % 4);
+      const ratioA = 3 + (n % 3);
+      const ratioB = 5 + (n % 4);
+      const totalRatio = ratioBase * (ratioA + ratioB);
+      const percentPrice = 80 + n * 2;
+      const discount = 20 + (n % 3) * 5;
+      const avg1 = 82 + (n % 6);
+      const avg2 = 88 + (n % 5);
+      const workDaysA = 6 + (n % 4);
+      const workDaysB = 8 + (n % 5);
+      const storage = 120 + n * 5;
+      const first = 3 + (n % 3);
+      const second = 4 + (n % 4);
+      const distance = (speed1 + speed2) * hours;
+      const circleArea = 3.14 * radius * radius;
+      const circleLen = 2 * 3.14 * radius;
+      const rectArea = length * width;
+      const discountPrice = percentPrice * (1 - discount / 100);
+      const remain = storage * (1 - 1 / first - 1 / second);
+      const work = 1 / workDaysA + 1 / workDaysB;
+      if (monthMode === "july") {
+        return [
+          { level: "五年级复习", type: "和差倍", q: `书店故事书有 ${a} 本，科普书比故事书多 ${b} 本，工具书是科普书的 2 倍。三类书一共有多少本？`, a: `科普书 ${a + b} 本，工具书 ${(a + b) * 2} 本，共 ${a + a + b + (a + b) * 2} 本`, final: String(a + a + b + (a + b) * 2), unit: "本" },
+          { level: "五年级复习", type: "分数应用", q: `仓库有 ${storage} 千克大米，第一天用去 1/${first}，第二天用去 1/${second}。还剩多少千克？`, a: `${storage} × (1 - 1/${first} - 1/${second}) = ${remain.toFixed(2)} 千克`, final: remain.toFixed(2), unit: "千克" },
+          { level: "五年级复习", type: "行程相遇", q: `甲、乙两车同时从两地相向而行，甲每小时行 ${speed1} 千米，乙每小时行 ${speed2} 千米，${hours} 小时后相遇。两地相距多少千米？`, a: `(${speed1} + ${speed2}) × ${hours} = ${distance} 千米`, final: String(distance), unit: "千米" },
+          { level: "五年级复习", type: "几何面积", q: `长方形菜地长 ${length} 米，宽 ${width} 米，每平方米收菜 ${d + 1} 千克。一共可收多少千克？`, a: `${length} × ${width} × ${d + 1} = ${rectArea * (d + 1)} 千克`, final: String(rectArea * (d + 1)), unit: "千克" },
+          { level: "六年级预习", type: "百分数", q: `一件文具原价 ${percentPrice} 元，降价 ${rate}% 后出售。现价是多少元？`, a: `${percentPrice} × (1 - ${rate}%) = ${(percentPrice * (1 - rate / 100)).toFixed(1)} 元`, final: (percentPrice * (1 - rate / 100)).toFixed(1), unit: "元" },
+          { level: "五年级复习", type: "平均数", q: `小组前 3 次测验平均分 ${avg1} 分，第 4 次考了 ${avg2} 分。4 次平均分是多少？`, a: `(${avg1} × 3 + ${avg2}) ÷ 4 = ${((avg1 * 3 + avg2) / 4).toFixed(1)} 分`, final: ((avg1 * 3 + avg2) / 4).toFixed(1), unit: "分" },
+          { level: "六年级预习", type: "工程问题", q: `一项劳动，甲单独做 ${workDaysA} 天完成，乙单独做 ${workDaysB} 天完成。两人合作 1 天完成这项劳动的几分之几？`, a: `1/${workDaysA} + 1/${workDaysB} ≈ ${work.toFixed(3)}`, final: work.toFixed(3), unit: "" },
+          { level: "六年级预习", type: "比的应用", q: `美术组男生和女生人数的比是 ${ratioA}:${ratioB}，总人数是 ${totalRatio} 人。女生有多少人？`, a: `${totalRatio} ÷ (${ratioA} + ${ratioB}) × ${ratioB} = ${ratioBase * ratioB} 人`, final: String(ratioBase * ratioB), unit: "人" }
+        ];
+      }
+      return [
+        { level: "六年级预习", type: "分数乘除", q: `一袋面粉用去 2/5 后还剩 ${base} 千克。这袋面粉原来有多少千克？`, a: `${base} ÷ (1 - 2/5) = ${(base / 0.6).toFixed(2)} 千克`, final: (base / 0.6).toFixed(2), unit: "千克" },
+        { level: "六年级预习", type: "比的应用", q: `六年级兴趣小组男生和女生人数的比是 ${ratioA}:${ratioB}，男生有 ${ratioBase * ratioA} 人。女生有多少人？`, a: `${ratioBase * ratioA} ÷ ${ratioA} × ${ratioB} = ${ratioBase * ratioB} 人`, final: String(ratioBase * ratioB), unit: "人" },
+        { level: "六年级预习", type: "圆", q: `一个圆形花坛半径 ${radius} 米。它的周长和面积分别约是多少？取 π≈3.14。`, a: `周长 ${circleLen.toFixed(2)} 米，面积 ${circleArea.toFixed(2)} 平方米`, final: `${circleLen.toFixed(2)},${circleArea.toFixed(2)}`, unit: "米/平方米" },
+        { level: "六年级预习", type: "折扣", q: `一件衣服原价 ${percentPrice} 元，打 ${10 - discount / 10} 折。现价是多少元？`, a: `${percentPrice} × ${(10 - discount / 10) / 10} = ${discountPrice.toFixed(1)} 元`, final: discountPrice.toFixed(1), unit: "元" },
+        { level: "五年级复习", type: "行程追及", q: `甲车每小时行 ${speed1} 千米，乙车每小时行 ${speed2} 千米。甲车晚出发 ${hours} 小时，几小时后追上乙车？`, a: `${speed2} × ${hours} ÷ (${speed1} - ${speed2}) = ${(speed2 * hours / (speed1 - speed2)).toFixed(2)} 小时`, final: (speed2 * hours / (speed1 - speed2)).toFixed(2), unit: "小时" },
+        { level: "五年级复习", type: "统计", q: `五个数的平均数是 ${avg1}，其中四个数的和是 ${avg1 * 4 - b}。第五个数是多少？`, a: `${avg1} × 5 - ${avg1 * 4 - b} = ${avg1 + b}`, final: String(avg1 + b), unit: "" },
+        { level: "六年级预习", type: "工程问题", q: `一项工程，甲单独做 ${workDaysA} 天完成，乙单独做 ${workDaysB} 天完成。两人合作几天完成？`, a: `1 ÷ (1/${workDaysA} + 1/${workDaysB}) ≈ ${(1 / work).toFixed(2)} 天`, final: (1 / work).toFixed(2), unit: "天" },
+        { level: "六年级预习", type: "综合", q: `学校买来 ${e} 本练习本，先分给五年级 35%，再把剩下的 2/5 分给六年级。六年级分到多少本？`, a: `${e} × (1 - 35%) × 2/5 = ${(e * 0.65 * 0.4).toFixed(1)} 本`, final: (e * 0.65 * 0.4).toFixed(1), unit: "本" }
+      ];
+    }
+
+    function makeCalculations(n) {
+      const x = 20 + n;
+      const y = 7 + (n % 8);
+      const z = 3 + (n % 6);
+      return [
+        [`${x} + ${y * 13}`, x + y * 13],
+        [`${x * 4} - ${y * 9}`, x * 4 - y * 9],
+        [`${y} × ${z + 8}`, y * (z + 8)],
+        [`${x * z} ÷ ${z}`, x],
+        [`${x}.${z} + ${y}.${z + 1}`, (Number(`${x}.${z}`) + Number(`${y}.${z + 1}`)).toFixed(1)],
+        [`${x + 30}.${z} - ${y}.${z}`, (Number(`${x + 30}.${z}`) - Number(`${y}.${z}`)).toFixed(1)],
+        [`${z}/10 + ${z + 2}/10`, `${z + z + 2}/10`],
+        [`${z + 5}/10 - ${z}/10`, "5/10"],
+        [`${x} × 0.25`, (x * 0.25).toFixed(2)],
+        [`${x + 8} ÷ 0.4`, ((x + 8) / 0.4).toFixed(1)],
+        [`${y}/${z + y} + ${z}/${z + y}`, `${y + z}/${z + y}`],
+        [`1 - ${z}/12`, `${12 - z}/12`],
+        [`${x} × ${z}/10`, (x * z / 10).toFixed(1)],
+        [`${x + y} ÷ ${z}`, ((x + y) / z).toFixed(2)],
+        [`${x}% × ${y * 10}`, (x / 100 * y * 10).toFixed(1)],
+        [`${y * 12} ÷ ${z + 3}`, (y * 12 / (z + 3)).toFixed(2)],
+        [`(${x} + ${y}) × ${z}`, (x + y) * z],
+        [`${x * 2} - ${y} × ${z}`, x * 2 - y * z],
+        [`${z}.${y} × 10`, Number(`${z}.${y}`) * 10],
+        [`${x + z} ÷ 100`, ((x + z) / 100).toFixed(2)]
+      ].map(([q, final]) => ({ q, a: String(final), final: String(final), unit: "" }));
+    }
+
+    function formatMathText(text) {
+      return String(text)
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/(\d+)\/(\d+)/g, '<span class="frac"><span class="top">$1</span><span class="bottom">$2</span></span>');
+    }
+
+    function renderProblemRows(items, options) {
+      return `<div class="problem-list">${items.map((item, index) => {
+        const target = `${options.prefix}${index}`;
+        const levelClass = item.level === "六年级预习" ? "preview" : "review";
+        const meta = item.level || item.type
+          ? `<div class="problem-meta">${item.level ? `<span class="level-mark ${levelClass}">${item.level}</span>` : ""}${item.type ? `<span class="tag math">${item.type}</span>` : ""}</div>`
+          : "";
+        const expression = `${formatMathText(item.q)}${options.equals ? " =" : ""}`;
+        return `
+          <div class="problem-row">
+            <span class="problem-no">${index + 1}</span>
+            <div class="problem-body">
+              ${meta}
+              <div class="formula">${expression}</div>
+              <label>答案
+                <div class="voice-wrap">
+                  <input id="${target}" data-voice="true" placeholder="${options.placeholder(item)}" />
+                  <button type="button" class="voice-btn" data-target="${target}" title="语音输入">麦</button>
+                </div>
+              </label>
+            </div>
+          </div>`;
+      }).join("")}</div>`;
+    }
+
+    function makePreviewKnowledge() {
+      if (monthMode === "july") {
+        return [
+          "百分数：百分数表示“一个数是另一个数的百分之几”，先把百分数改写成小数再计算。",
+          "工程问题：把整项工作看作 1，工作效率就是“每天完成几分之几”。",
+          "比的应用：先找总份数，再用“总量 ÷ 总份数 × 对应份数”。"
+        ];
+      }
+      return [
+        "分数乘除：已知“剩下的是整体的几分之几”求整体，常用除法。",
+        "比：比表示两个量之间的份数关系，关键是先找一份是多少。",
+        "圆：周长 C=2πr，面积 S=πr²，做题时先分清求周长还是面积。",
+        "百分数和折扣：几折就是十分之几，八折就是原价的 80%。"
+      ];
+    }
+
+    function renderMaterial() {
+      const n = materialNumber();
+      const readings = monthMode === "august" ? [makeReading(n), makeReading(n + 100)] : [makeReading(n)];
+      const math = makeMath(n);
+      const calculations = makeCalculations(n);
+      const focusIndex = Math.min(7, Math.floor((n - 1) / 7));
+      const writing = writingTargets[(n - 1) % writingTargets.length];
+      const hand = handwritingLines[(n - 1) % handwritingLines.length];
+      const previewKnowledge = makePreviewKnowledge();
+      $("materialFocus").textContent = `第 ${n} 天重点：${weeklyFocus[focusIndex]} 今天先求稳，再求快。`;
+      $("dailyMaterial").innerHTML = `
+        ${readings.map((reading, index) => `
+          <article class="material-card">
+            <h3>${monthMode === "august" ? `阅读理解第 ${index + 1} 篇` : "阅读理解"}</h3>
+            <div class="reading-block">
+              <h4>${reading.title}</h4>
+              <div class="reading-text">${reading.paragraphs.map(paragraph => `<p>${paragraph}</p>`).join("")}</div>
+              <ol>${reading.questions.map(q => `<li>${q}</li>`).join("")}</ol>
+            </div>
+          </article>
+        `).join("")}
+        <article class="material-card">
+          <h3>阅读作答与批改</h3>
+          <label>阅读答案
+            <div class="voice-wrap">
+              <textarea id="readingWork" data-voice="true" placeholder="${monthMode === "august" ? "按“第1篇/第2篇 + 题号”写答案；每题尽量写出原文依据。" : "按题号写答案；每题尽量写出原文依据。"}"></textarea>
+              <button type="button" class="voice-btn" data-target="readingWork" title="语音输入">麦</button>
+            </div>
+          </label>
+          <div class="footer-actions">
+            <button id="gradeReading" type="button" class="primary">批改阅读</button>
+            <button type="button" class="answerBtn">看阅读提示</button>
+          </div>
+          <div id="readingGradeResult" class="answer show">完成阅读答案后点击批改。</div>
+          <div class="answer">${readings.map((reading, index) => `<p><b>${monthMode === "august" ? `第 ${index + 1} 篇` : "阅读"}提示：</b>${reading.answer}</p>`).join("")}</div>
+        </article>
+        <article class="material-card">
+          <h3>作文与书写</h3>
+          <p><b>作文题目：</b>${writing}</p>
+          <ol>
+            <li>先列 3 个关键词：人物、事情、感受。</li>
+            <li>写一个 120-180 字片段。</li>
+            <li>修改时增加 1 处动作或心理描写。</li>
+          </ol>
+          <label>作文/片段
+            <div class="voice-wrap">
+              <textarea id="essayWork" data-voice="true" placeholder="把作文或片段写在这里，批改后再誊写到本子上。"></textarea>
+              <button type="button" class="voice-btn" data-target="essayWork" title="语音输入">麦</button>
+            </div>
+          </label>
+          <p><b>书写句：</b>${hand}</p>
+          <div class="task-list">
+            <label class="task"><input type="checkbox" class="handCheck" /><div><div class="task-title">字形端正</div><div class="task-note">横平竖直，重心稳。</div></div><span class="tag habit">书写</span></label>
+            <label class="task"><input type="checkbox" class="handCheck" /><div><div class="task-title">大小均匀</div><div class="task-note">不忽大忽小，不挤格。</div></div><span class="tag habit">书写</span></label>
+            <label class="task"><input type="checkbox" class="handCheck" /><div><div class="task-title">卷面整洁</div><div class="task-note">少涂改，行距清楚。</div></div><span class="tag habit">书写</span></label>
+          </div>
+          <div class="footer-actions">
+            <button id="gradeEssay" type="button" class="primary">批改作文</button>
+            <button id="gradeHand" type="button">批改书写</button>
+          </div>
+          <div id="essayGradeResult" class="answer show">完成作文后点击批改。</div>
+          <div id="handGradeResult" class="answer show">勾选书写表现后点击批改书写。</div>
+        </article>
+        <article class="material-card">
+          <h3>数学综合应用题</h3>
+          <div class="knowledge-list">
+            <b>六年级预习知识点</b>
+            ${previewKnowledge.map(item => `<div>${formatMathText(item)}</div>`).join("")}
+          </div>
+          ${renderProblemRows(math, { prefix: "mathAnswer", equals: false, placeholder: item => `例：${item.final}${item.unit}` })}
+          <div class="footer-actions">
+            <button id="gradeMath" type="button" class="primary">批改应用题</button>
+            <button type="button" class="answerBtn">看应用题答案</button>
+          </div>
+          <div id="mathGradeResult" class="answer show">完成 8 道应用题后点击批改。</div>
+          <div class="answer"><ol>${math.map(item => `<li>${formatMathText(item.a)}</li>`).join("")}</ol></div>
+        </article>
+        <article class="material-card">
+          <h3>计算练习 20 题</h3>
+          ${renderProblemRows(calculations, { prefix: "calcAnswer", equals: true, placeholder: () => "答案" })}
+          <div class="footer-actions">
+            <button id="gradeCalc" type="button" class="primary">批改计算</button>
+            <button type="button" class="answerBtn">看计算答案</button>
+          </div>
+          <div id="calcGradeResult" class="answer show">完成 20 道计算题后点击批改。</div>
+          <div class="answer"><ol>${calculations.map(item => `<li>${formatMathText(item.q)} = ${formatMathText(item.a)}</li>`).join("")}</ol></div>
+        </article>
+        <article class="material-card">
+          <h3>今日复盘</h3>
+          <ol>
+            <li>阅读题中，我的答案依据是哪一句？</li>
+            <li>作文里最具体的细节是哪一句？</li>
+            <li>应用题有没有圈问题、画条件、写单位？</li>
+            <li>计算题错在口算、进位、小数点、通分，还是抄错？</li>
+          </ol>
+        </article>
+      `;
+      $("gradeReading").addEventListener("click", gradeReadingWork);
+      $("gradeEssay").addEventListener("click", gradeEssayWork);
+      $("gradeHand").addEventListener("click", gradeHandwriting);
+      $("gradeMath").addEventListener("click", gradeMathWork);
+      $("gradeCalc").addEventListener("click", gradeCalcWork);
+      bindVoiceButtons();
+      document.querySelectorAll(".answerBtn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          btn.parentElement.nextElementSibling.nextElementSibling.classList.toggle("show");
+        });
+      });
+    }
+
+    let activeRecognition = null;
+
+    function bindVoiceButtons() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      document.querySelectorAll(".voice-btn").forEach(button => {
+        button.addEventListener("click", () => {
+          const target = $(button.dataset.target);
+          if (!target) return;
+          if (!SpeechRecognition) {
+            showVoiceStatus("当前浏览器不支持语音输入，可以使用系统自带听写。");
+            return;
+          }
+          if (activeRecognition) {
+            activeRecognition.stop();
+            activeRecognition = null;
+          }
+          const recognition = new SpeechRecognition();
+          activeRecognition = recognition;
+          recognition.lang = "zh-CN";
+          recognition.interimResults = false;
+          recognition.continuous = false;
+          button.classList.add("listening");
+          showVoiceStatus("正在听，请说话。数学答案建议说“二十五点六”“三分之一”或直接说数字。");
+          recognition.onresult = (event) => {
+            const text = Array.from(event.results).map(result => result[0].transcript).join("");
+            insertVoiceText(target, text);
+            showVoiceStatus(`已输入：${text}`);
+          };
+          recognition.onerror = () => {
+            showVoiceStatus("没有识别成功，请再试一次，或检查麦克风权限。");
+          };
+          recognition.onend = () => {
+            button.classList.remove("listening");
+            activeRecognition = null;
+          };
+          recognition.start();
+        });
+      });
+    }
+
+    function insertVoiceText(target, text) {
+      const cleaned = text.replace(/\s/g, "");
+      if (target.tagName === "TEXTAREA") {
+        const prefix = target.value.trim() ? "\n" : "";
+        target.value += `${prefix}${cleaned}`;
+      } else {
+        target.value = normalizeSpeechNumber(cleaned);
+      }
+      target.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+
+    function normalizeSpeechNumber(text) {
+      let value = text.replace(/[，。]/g, "");
+      if (value.includes("分之")) {
+        const parts = value.split("分之");
+        if (parts.length === 2) {
+          return `${chineseNumber(parts[1])}/${chineseNumber(parts[0])}`;
+        }
+      }
+      if (value.includes("点")) {
+        const parts = value.split("点");
+        const decimals = parts[1].split("").map(chineseDigit).join("");
+        return `${chineseNumber(parts[0])}.${decimals}`;
+      }
+      if (/^[零一二两三四五六七八九十百千万\d]+$/.test(value)) {
+        return String(chineseNumber(value));
+      }
+      return value.replace(/百分之/g, "");
+    }
+
+    function chineseDigit(char) {
+      return { 零: "0", 一: "1", 二: "2", 两: "2", 三: "3", 四: "4", 五: "5", 六: "6", 七: "7", 八: "8", 九: "9" }[char] || char;
+    }
+
+    function chineseNumber(text) {
+      if (/^\d+(?:\.\d+)?$/.test(text)) return Number(text);
+      const digitMap = { 零: 0, 一: 1, 二: 2, 两: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9 };
+      const unitMap = { 十: 10, 百: 100, 千: 1000, 万: 10000 };
+      let total = 0;
+      let current = 0;
+      for (const char of text) {
+        if (digitMap[char] != null) {
+          current = digitMap[char];
+        } else if (unitMap[char]) {
+          const unit = unitMap[char];
+          if (unit === 10000) {
+            total = (total + current) * unit;
+            current = 0;
+          } else {
+            total += (current || 1) * unit;
+            current = 0;
+          }
+        } else if (/\d/.test(char)) {
+          current = current * 10 + Number(char);
+        }
+      }
+      return total + current;
+    }
+
+    function showVoiceStatus(message) {
+      let status = $("voiceStatus");
+      if (!status) {
+        status = document.createElement("div");
+        status.id = "voiceStatus";
+        status.className = "voice-status";
+        $("dailyMaterial").before(status);
+      }
+      status.textContent = message;
+    }
+
+    function normalizeAnswer(value) {
+      return String(value || "")
+        .replace(/[，。；;：:\s]/g, "")
+        .replace(/％/g, "%")
+        .replace(/（/g, "(")
+        .replace(/）/g, ")")
+        .trim();
+    }
+
+    function numericValue(value) {
+      const text = normalizeAnswer(value);
+      const fraction = text.match(/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);
+      if (fraction && Number(fraction[2]) !== 0) {
+        return Number(fraction[1]) / Number(fraction[2]);
+      }
+      const number = text.match(/-?\d+(?:\.\d+)?/);
+      return number ? Number(number[0]) : NaN;
+    }
+
+    function numericValues(value) {
+      const raw = String(value || "").replace(/，/g, ",");
+      const matches = raw.match(/-?\d+(?:\.\d+)?(?:\/-?\d+(?:\.\d+)?)?/g) || [];
+      return matches.map(item => numericValue(item)).filter(item => !Number.isNaN(item));
+    }
+
+    function answersMatch(input, item) {
+      const user = normalizeAnswer(input);
+      const expected = normalizeAnswer(item.final);
+      if (!user) return false;
+      if (expected.includes(",")) {
+        const userNumbers = numericValues(input);
+        return expected.split(",").every(part => {
+          const target = numericValue(part);
+          return user.includes(part) || userNumbers.some(value => Math.abs(value - target) < 0.015);
+        });
+      }
+      if (user.includes(expected) && expected.length > 0) return true;
+      if (item.decimal && user.includes(normalizeAnswer(item.decimal))) return true;
+      const userNum = numericValue(user);
+      const expectedNum = numericValue(item.final);
+      if (!Number.isNaN(userNum) && !Number.isNaN(expectedNum)) {
+        return Math.abs(userNum - expectedNum) < 0.015;
+      }
+      return false;
+    }
+
+    function gradeMathWork() {
+      const math = makeMath(materialNumber());
+      let correct = 0;
+      const details = math.map((item, index) => {
+        const value = $(`mathAnswer${index}`).value;
+        const ok = answersMatch(value, item);
+        if (ok) correct += 1;
+        return `<p><span class="result-pill ${ok ? "ok" : "bad"}">${ok ? "正确" : "需订正"}</span>第 ${index + 1} 题：参考答案 ${formatMathText(item.a)}</p>`;
+      }).join("");
+      const score = Math.round(correct / math.length * 100);
+      const comment = correct === math.length
+        ? "很稳，今天的应用题可以进入限时训练。"
+        : correct >= Math.ceil(math.length * 0.6)
+          ? "有基础，但还要检查条件和单位。订正时请写出数量关系。"
+          : "先放慢速度，每题都圈问题、画条件，再列式。";
+      $("mathGradeResult").innerHTML = `<b>${score} 分</b><br>${details}<p>${comment}</p>`;
+      state.grades.push({ date: dateKey(), subject: "数学", score, comment });
+      state.score = (state.score || 0) + (correct === math.length ? 3 : 1);
+      save();
+      renderTasks();
+      renderLogs();
+    }
+
+    function gradeCalcWork() {
+      const calculations = makeCalculations(materialNumber());
+      let correct = 0;
+      const wrong = [];
+      calculations.forEach((item, index) => {
+        const ok = answersMatch($(`calcAnswer${index}`).value, item);
+        if (ok) {
+          correct += 1;
+        } else {
+          wrong.push(`第 ${index + 1} 题：${formatMathText(item.q)} = ${formatMathText(item.a)}`);
+        }
+      });
+      const score = Math.round(correct / calculations.length * 100);
+      const comment = correct >= 18
+        ? "计算很稳，继续保持书写清楚和小数点位置准确。"
+        : correct >= 14
+          ? "计算基本过关，订正时重点看小数点、通分和运算顺序。"
+          : "计算准确率还不够，建议明天先慢做 10 题，再限时做 10 题。";
+      $("calcGradeResult").innerHTML = `<b>${score} 分</b><br><span class="result-pill ${score >= 90 ? "ok" : score >= 70 ? "warn" : "bad"}">正确 ${correct}/20</span><p>${comment}</p>${wrong.length ? `<p><b>需订正：</b><br>${wrong.join("<br>")}</p>` : ""}`;
+      state.grades.push({ date: dateKey(), subject: "计算", score, comment });
+      state.score = (state.score || 0) + (correct >= 18 ? 3 : 1);
+      save();
+      renderTasks();
+      renderLogs();
+    }
+
+    function gradeReadingWork() {
+      const text = $("readingWork").value.trim();
+      const lengthScore = text.length >= 120 ? 25 : text.length >= 70 ? 18 : text.length >= 35 ? 12 : 6;
+      const basisScore = /原文|文中|因为|从.*看出|依据|画/.test(text) ? 25 : 12;
+      const completeScore = /主要内容|心情|结尾|作用|好在|说明|表现/.test(text) ? 25 : 15;
+      const expressionScore = /。|；|，/.test(text) ? 20 : 12;
+      const score = Math.min(100, lengthScore + basisScore + completeScore + expressionScore);
+      const tips = [];
+      if (basisScore < 20) tips.push("每道题至少写一句“依据在文中哪里”。");
+      if (completeScore < 20) tips.push("答题要先正面回答，再结合短文说明。");
+      if (text.length < 70) tips.push("答案偏短，可以把原因、依据、感受补完整。");
+      if (tips.length === 0) tips.push("阅读答案比较完整，下一步练习把语言写得更简洁。");
+      $("readingGradeResult").innerHTML = `<b>${score} 分</b><br><span class="result-pill ${score >= 85 ? "ok" : score >= 70 ? "warn" : "bad"}">${score >= 85 ? "优秀" : score >= 70 ? "合格" : "需加强"}</span><p>${tips.join("<br>")}</p><p>家长评语：今天能围绕短文作答，继续保持“答案回原文”的习惯。</p>`;
+      state.grades.push({ date: dateKey(), subject: "阅读", score, comment: tips.join(" ") });
+      state.score = (state.score || 0) + 2;
+      save();
+      renderTasks();
+      renderLogs();
+    }
+
+    function gradeEssayWork() {
+      const text = $("essayWork").value.trim();
+      const clean = text.replace(/\s/g, "");
+      const length = clean.length;
+      const paragraphScore = text.includes("\n") || length >= 120 ? 18 : 10;
+      const lengthScore = length >= 120 && length <= 260 ? 25 : length >= 80 ? 18 : 10;
+      const detailScore = /说|看|想|笑|跑|拿|放|听|心里|眼睛|声音|动作|语言|神态/.test(text) ? 25 : 12;
+      const topicScore = /坚持|熟悉|误会|家务|地方|错误|暑假|帮助|感受|明白/.test(text) ? 17 : 10;
+      const punctuationScore = /[。！？]/.test(text) ? 15 : 8;
+      const score = Math.min(100, lengthScore + paragraphScore + detailScore + topicScore + punctuationScore);
+      const tips = [];
+      if (length < 120) tips.push("字数偏少，补一个经过细节或心理活动。");
+      if (detailScore < 20) tips.push("增加动作、语言、神态或心理描写，至少补 2 句。");
+      if (paragraphScore < 15) tips.push("试着分成开头、经过、感受三部分。");
+      if (punctuationScore < 12) tips.push("注意句号、问号、感叹号，不要一逗到底。");
+      if (tips.length === 0) tips.push("结构和细节都不错，下一步把结尾写得更自然。");
+      $("essayGradeResult").innerHTML = `<b>${score} 分</b><br><span class="result-pill ${score >= 85 ? "ok" : score >= 70 ? "warn" : "bad"}">${score >= 85 ? "优秀" : score >= 70 ? "合格" : "需修改"}</span><p>${tips.join("<br>")}</p><p>家长评语：这次写作能围绕一件事展开，修改时重点让画面更具体。</p>`;
+      state.grades.push({ date: dateKey(), subject: "作文", score, comment: tips.join(" ") });
+      state.score = (state.score || 0) + 2;
+      save();
+      renderTasks();
+      renderLogs();
+    }
+
+    function gradeHandwriting() {
+      const checked = [...document.querySelectorAll(".handCheck")].filter(item => item.checked).length;
+      const score = checked * 30 + (checked === 3 ? 10 : 0);
+      const next = checked === 3
+        ? "今天书写状态很好，明天继续保持速度慢一点、笔画稳一点。"
+        : checked === 2
+          ? "整体不错，明天只盯一个问题：大小均匀或减少涂改。"
+          : "先不追求写多，明天把一行字写正、写匀。";
+      $("handGradeResult").innerHTML = `<b>${score} 分</b><br><p>${next}</p>`;
+      state.grades.push({ date: dateKey(), subject: "书写", score, comment: next });
+      state.score = (state.score || 0) + 1;
+      save();
+      renderTasks();
+      renderLogs();
+    }
+
+    function save() {
+      localStorage.setItem("studyState", JSON.stringify(state));
+    }
+
+    function dateKey() {
+      return $("studyDate").value || today;
+    }
+
+    function taskKey(index) {
+      return `${dateKey()}-${monthMode}-${index}`;
+    }
+
+    function renderTasks() {
+      const plan = dailyPlans[monthMode];
+      $("focusPlan").textContent = plan.minutes;
+      $("taskList").innerHTML = "";
+      let done = 0;
+      plan.tasks.forEach((task, index) => {
+        const checked = !!state.tasks[taskKey(index)];
+        if (checked) done += 1;
+        const item = document.createElement("label");
+        item.className = "task";
+        item.innerHTML = `
+          <input type="checkbox" ${checked ? "checked" : ""} />
+          <div>
+            <div class="task-title">${task[0]}</div>
+            <div class="task-note">${task[1]}</div>
+          </div>
+          <span class="tag ${task[2]}">${task[2] === "cn" ? "语文" : task[2] === "math" ? "数学" : "习惯"}</span>
+        `;
+        item.querySelector("input").addEventListener("change", (event) => {
+          state.tasks[taskKey(index)] = event.target.checked;
+          state.score = Math.max(0, (state.score || 0) + (event.target.checked ? 2 : -2));
+          save();
+          renderTasks();
+        });
+        $("taskList").appendChild(item);
+      });
+      $("doneCount").textContent = `${done}/${plan.tasks.length}`;
+      $("score").textContent = state.score || 0;
+      $("streak").textContent = calcStreak();
+    }
+
+    function calcStreak() {
+      const days = new Set(Object.keys(state.tasks || {}).filter(k => state.tasks[k]).map(k => k.slice(0, 10)));
+      let count = 0;
+      const cursor = new Date(dateKey());
+      while (days.has(formatDate(cursor))) {
+        count += 1;
+        cursor.setDate(cursor.getDate() - 1);
+      }
+      return count;
+    }
+
+    function renderTimeline() {
+      $("timeline").innerHTML = "";
+      route[monthMode].forEach(([date, items]) => {
+        const week = document.createElement("div");
+        week.className = "week";
+        week.innerHTML = `<div class="week-date">${date}</div><ul>${items.map(item => `<li>${item}</li>`).join("")}</ul>`;
+        $("timeline").appendChild(week);
+      });
+    }
+
+    function setMode(mode) {
+      monthMode = mode;
+      $("julyBtn").classList.toggle("active", mode === "july");
+      $("augBtn").classList.toggle("active", mode === "august");
+      renderTasks();
+      renderTimeline();
+      renderMaterial();
+    }
+
+    function syncModeToDate() {
+      const month = Number(dateKey().split("-")[1]);
+      if (month === 8) {
+        setMode("august");
+      } else {
+        setMode("july");
+      }
+    }
+
+    function shiftDate(offset) {
+      const [year, month, day] = dateKey().split("-").map(Number);
+      const date = new Date(year, month - 1, day);
+      date.setDate(date.getDate() + offset);
+      $("studyDate").value = formatDate(date);
+      syncModeToDate();
+    }
+
+    function renderLogs() {
+      $("readingLog").innerHTML = state.reading.slice().reverse().map(item =>
+        `<div class="log-item"><b>${item.date}</b><br>${item.title}<br>${item.summary}<br>${item.sentence}</div>`
+      ).join("") || '<div class="task-note">暂无阅读记录</div>';
+      $("errorLog").innerHTML = state.errors.slice().reverse().map(item =>
+        `<div class="log-item"><b>${item.date} · ${item.subject}</b><br>${item.question}<br>错因：${item.reason}<br>改法：${item.fix}</div>`
+      ).join("") || '<div class="task-note">暂无错题记录</div>';
+      $("gradeLog").innerHTML = state.grades.slice().reverse().map(item =>
+        `<div class="log-item"><b>${item.date} · ${item.subject} · ${item.score} 分</b><br>${item.comment}</div>`
+      ).join("") || '<div class="task-note">暂无批改记录</div>';
+    }
+
+    function setPrompt() {
+      $("essayPrompt").textContent = prompts[Math.floor(Math.random() * prompts.length)];
+    }
+
+    function updateTimer() {
+      const min = String(Math.floor(seconds / 60)).padStart(2, "0");
+      const sec = String(seconds % 60).padStart(2, "0");
+      $("timeLeft").textContent = `${min}:${sec}`;
+    }
+
+    $("studyDate").value = today;
+    $("studyDate").addEventListener("change", syncModeToDate);
+    $("julyBtn").addEventListener("click", () => setMode("july"));
+    $("augBtn").addEventListener("click", () => setMode("august"));
+    $("prevMaterial").addEventListener("click", () => shiftDate(-1));
+    $("nextMaterial").addEventListener("click", () => shiftDate(1));
+    $("resetDay").addEventListener("click", () => {
+      dailyPlans[monthMode].tasks.forEach((_, index) => delete state.tasks[taskKey(index)]);
+      save();
+      renderTasks();
+    });
+
+    document.querySelectorAll(".tabBtn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tabBtn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        $(btn.dataset.tab).classList.add("active");
+      });
+    });
+
+    $("saveReading").addEventListener("click", () => {
+      if (!$("bookTitle").value.trim()) return;
+      state.reading.push({
+        date: dateKey(),
+        title: $("bookTitle").value.trim(),
+        summary: $("readingSummary").value.trim(),
+        sentence: $("readingSentence").value.trim()
+      });
+      state.score = (state.score || 0) + 3;
+      $("bookTitle").value = "";
+      $("readingSummary").value = "";
+      $("readingSentence").value = "";
+      save();
+      renderLogs();
+      renderTasks();
+    });
+
+    $("saveEssay").addEventListener("click", () => {
+      if (!$("essayTitle").value.trim()) return;
+      state.essay.push({
+        date: dateKey(),
+        title: $("essayTitle").value.trim(),
+        start: $("essayStart").value.trim(),
+        detail: $("essayDetail").value.trim()
+      });
+      state.score = (state.score || 0) + 5;
+      $("essayTitle").value = "";
+      $("essayStart").value = "";
+      $("essayDetail").value = "";
+      save();
+      renderTasks();
+      setPrompt();
+    });
+
+    $("saveError").addEventListener("click", () => {
+      if (!$("errorQuestion").value.trim()) return;
+      state.errors.push({
+        date: dateKey(),
+        subject: $("errorSubject").value,
+        question: $("errorQuestion").value.trim(),
+        reason: $("errorReason").value,
+        fix: $("errorFix").value.trim()
+      });
+      state.score = (state.score || 0) + 4;
+      $("errorQuestion").value = "";
+      $("errorFix").value = "";
+      save();
+      renderLogs();
+      renderTasks();
+    });
+
+    $("newPrompt").addEventListener("click", setPrompt);
+    $("printPlan").addEventListener("click", () => window.print());
+    $("exportData").addEventListener("click", () => {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `学习记录-${dateKey()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+    $("clearData").addEventListener("click", () => {
+      if (!confirm("确认清空所有本地记录？")) return;
+      localStorage.removeItem("studyState");
+      location.reload();
+    });
+
+    $("startTimer").addEventListener("click", () => {
+      if (timerId) return;
+      timerId = setInterval(() => {
+        seconds -= 1;
+        if (seconds <= 0) {
+          clearInterval(timerId);
+          timerId = null;
+          seconds = 25 * 60;
+          state.focus = (state.focus || 0) + 25;
+          state.score = (state.score || 0) + 2;
+          save();
+        }
+        updateTimer();
+        renderTasks();
+      }, 1000);
+    });
+    $("pauseTimer").addEventListener("click", () => {
+      clearInterval(timerId);
+      timerId = null;
+    });
+    $("resetTimer").addEventListener("click", () => {
+      clearInterval(timerId);
+      timerId = null;
+      seconds = 25 * 60;
+      updateTimer();
+    });
+
+    setPrompt();
+    syncModeToDate();
+    renderLogs();
+    updateTimer();
+  </script>
+</body>
+</html>
