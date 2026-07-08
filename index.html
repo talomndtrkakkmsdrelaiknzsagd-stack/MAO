@@ -981,6 +981,17 @@
       "日日行，不怕千万里；常常做，不怕千万事。"
     ];
 
+    const encouragements = [
+      "今天最重要的不是快，而是把依据找出来、把关系想清楚。",
+      "能慢下来检查，就是在给正确率加一层保护。",
+      "今天只要把错因说清楚，明天同类题就会更稳。",
+      "认真写出依据，比只写答案更厉害。",
+      "把一道难题讲明白，就是一次很扎实的进步。",
+      "今天的坚持会留在习惯里，明天会轻松一点。",
+      "先求清楚，再求速度，这就是高手的做法。",
+      "愿意订正的人，进步通常来得很安静也很可靠。"
+    ];
+
     function dayIndex() {
       const parts = dateKey().split("-").map(Number);
       const day = Math.min(31, Math.max(1, parts[2] || 1));
@@ -1019,8 +1030,30 @@
           "从文中选择一个词语或句子，说说它好在哪里。",
           "读完短文，你准备在今天的学习中改进哪一个小习惯？"
         ],
-        answer: "参考：概括要写清“谁、做了什么、结果/感受”；心情题要先写变化，再引用依据；理解句子要联系上下文和学习习惯；结尾通常点明感受、呼应题目或引发思考。"
+        answer: makeReadingAnswers(seed)
       };
+    }
+
+    function makeReadingAnswers(seed) {
+      const titles = {
+        "楼下的旧书摊": ["看到旧书摊和扉页上的话", "放轻了翻书的手", "书很轻，心里却像多了一盏小灯", "旧书摊"],
+        "迟到的雨伞": ["等雨伞、看到妈妈冒雨绕路", "没有抱怨，把伞往妈妈那边偏", "雨点落在伞面上，声音好像也变轻了", "雨伞"],
+        "一张草稿纸": ["重新认识草稿纸的作用", "觉得草稿不是废纸", "题目还是会难，但思路不再乱成一团", "草稿纸"],
+        "菜市场里的数学": ["在菜市场估算买菜总价", "心里有一点踏实", "数学不是只待在练习本里，它藏在每天的生活里", "菜市场"],
+        "窗边的朗读声": ["通过朗读读懂长句层次", "声音慢慢稳了起来", "让文字在嘴边走一遍，再在心里站稳", "朗读"],
+        "没擦掉的错号": ["写错因后发现常漏看关键词", "错号没有那么难看了", "它像路标，告诉我下一次应该在哪里慢下来", "错号"],
+        "图书馆的安静": ["在图书馆认真读一本科普书", "心不乱跑，只借真正想读完的书", "安静有时不是没有声音，而是心不乱跑", "图书馆"],
+        "一次重新开始": ["从一件小事重新开始完成计划", "心慢慢定下来", "重新开始不需要很大的勇气", "重新开始"]
+      };
+      const info = titles[seed.title] || titles["楼下的旧书摊"];
+      return [
+        `短文写“我”${info[0]}，从一开始不太在意，到后来懂得学习和做事都要慢下来、找依据、认真对待。`,
+        `心情从随意或急躁，变为更安定、更认真。依据可写：“${seed.turn}”或“${info[2]}”。`,
+        "这句话说明学习时如果只求快，就容易漏看题目条件和文章细节，也说不清理由；它提醒我们先慢下来，找清依据，再下结论。",
+        `结尾点明了作者的收获，也呼应“${info[3]}”这件事，让文章的意思更完整。`,
+        `示例：可以选“${info[2]}”，好在把明白道理后的感受写得形象，比直接说“我懂了”更生动。`,
+        "可以写：今天阅读先看题，再回原文画依据；数学应用题先圈关键词，不急着列式。只要写出一个具体做法即可。"
+      ];
     }
 
     function makeMath(n) {
@@ -1157,6 +1190,22 @@
       ];
     }
 
+    function makeParentChecks(n, writing, hand) {
+      const mathFocus = monthMode === "july"
+        ? "应用题重点看分数应用、工程问题和比的应用，要求先说数量关系再核对答案。"
+        : "应用题重点看六年级预习题，分清分数乘除、比、圆、折扣分别在问什么。";
+      const calcFocus = n % 2 === 0
+        ? "计算重点检查分数加减和小数点位置，错题要说出是抄错、算错还是顺序错。"
+        : "计算重点检查分数题和百分数题，答案可以不化简，但分子、分母和单位不能抄错。";
+      return [
+        "阅读：概括题是否写出“谁 + 事件 + 收获”，心情变化题是否至少引用 1 句原文。",
+        `作文：题目是“${writing}”，检查是否围绕一件事写，并补了动作、语言、神态或心理描写。`,
+        mathFocus,
+        calcFocus,
+        `书写：临写“${hand}”，圈出今天写得最稳的 3 个字。`
+      ];
+    }
+
     function renderMaterial() {
       const n = materialNumber();
       const readings = monthMode === "august" ? [makeReading(n), makeReading(n + 100)] : [makeReading(n)];
@@ -1166,6 +1215,8 @@
       const writing = writingTargets[(n - 1) % writingTargets.length];
       const hand = handwritingLines[(n - 1) % handwritingLines.length];
       const previewKnowledge = makePreviewKnowledge();
+      const parentChecks = makeParentChecks(n, writing, hand);
+      const encouragement = encouragements[(n - 1) % encouragements.length];
       $("materialFocus").textContent = `第 ${n} 天重点：${weeklyFocus[focusIndex]} 今天先求稳，再求快。`;
       $("dailyMaterial").innerHTML = `
         ${readings.map((reading, index) => `
@@ -1191,7 +1242,7 @@
             <button type="button" class="answerBtn">看阅读提示</button>
           </div>
           <div id="readingGradeResult" class="answer show">完成阅读答案后点击批改。</div>
-          <div class="answer">${readings.map((reading, index) => `<p><b>${monthMode === "august" ? `第 ${index + 1} 篇` : "阅读"}提示：</b>${reading.answer}</p>`).join("")}</div>
+          <div class="answer">${readings.map((reading, index) => `<div><b>${monthMode === "august" ? `第 ${index + 1} 篇` : "阅读"}参考：</b><ol>${reading.answer.map(item => `<li>${item}</li>`).join("")}</ol></div>`).join("")}</div>
         </article>
         <article class="material-card">
           <h3>作文与书写</h3>
@@ -1245,13 +1296,11 @@
           <div class="answer"><ol>${calculations.map(item => `<li>${formatMathText(item.q)} = ${formatMathText(item.a)}</li>`).join("")}</ol></div>
         </article>
         <article class="material-card">
-          <h3>今日复盘</h3>
+          <h3>家长检查</h3>
           <ol>
-            <li>阅读题中，我的答案依据是哪一句？</li>
-            <li>作文里最具体的细节是哪一句？</li>
-            <li>应用题有没有圈问题、画条件、写单位？</li>
-            <li>计算题错在口算、进位、小数点、通分，还是抄错？</li>
+            ${parentChecks.map(item => `<li>${formatMathText(item)}</li>`).join("")}
           </ol>
+          <div class="prompt">${encouragement}</div>
         </article>
       `;
       $("gradeReading").addEventListener("click", gradeReadingWork);
@@ -1484,7 +1533,7 @@
       if (completeScore < 20) tips.push("答题要先正面回答，再结合短文说明。");
       if (text.length < 70) tips.push("答案偏短，可以把原因、依据、感受补完整。");
       if (tips.length === 0) tips.push("阅读答案比较完整，下一步练习把语言写得更简洁。");
-      $("readingGradeResult").innerHTML = `<b>${score} 分</b><br><span class="result-pill ${score >= 85 ? "ok" : score >= 70 ? "warn" : "bad"}">${score >= 85 ? "优秀" : score >= 70 ? "合格" : "需加强"}</span><p>${tips.join("<br>")}</p><p>家长评语：今天能围绕短文作答，继续保持“答案回原文”的习惯。</p>`;
+      $("readingGradeResult").innerHTML = `<b>${score} 分</b><br><span class="result-pill ${score >= 85 ? "ok" : score >= 70 ? "warn" : "bad"}">${score >= 85 ? "优秀" : score >= 70 ? "合格" : "需加强"}</span><p>${tips.join("<br>")}</p><p>今天能围绕短文作答，继续保持“答案回原文”的习惯。</p>`;
       state.grades.push({ date: dateKey(), subject: "阅读", score, comment: tips.join(" ") });
       state.score = (state.score || 0) + 2;
       save();
@@ -1508,7 +1557,7 @@
       if (paragraphScore < 15) tips.push("试着分成开头、经过、感受三部分。");
       if (punctuationScore < 12) tips.push("注意句号、问号、感叹号，不要一逗到底。");
       if (tips.length === 0) tips.push("结构和细节都不错，下一步把结尾写得更自然。");
-      $("essayGradeResult").innerHTML = `<b>${score} 分</b><br><span class="result-pill ${score >= 85 ? "ok" : score >= 70 ? "warn" : "bad"}">${score >= 85 ? "优秀" : score >= 70 ? "合格" : "需修改"}</span><p>${tips.join("<br>")}</p><p>家长评语：这次写作能围绕一件事展开，修改时重点让画面更具体。</p>`;
+      $("essayGradeResult").innerHTML = `<b>${score} 分</b><br><span class="result-pill ${score >= 85 ? "ok" : score >= 70 ? "warn" : "bad"}">${score >= 85 ? "优秀" : score >= 70 ? "合格" : "需修改"}</span><p>${tips.join("<br>")}</p><p>这次写作能围绕一件事展开，修改时重点让画面更具体。</p>`;
       state.grades.push({ date: dateKey(), subject: "作文", score, comment: tips.join(" ") });
       state.score = (state.score || 0) + 2;
       save();
