@@ -713,6 +713,23 @@
       margin: 15px 0 12px;
       background: #dfe9e6;
     }
+    .day-gallery {
+      display:grid;
+      grid-template-columns:1.35fr .65fr;
+      grid-template-rows:145px 145px;
+      gap:8px;
+      margin:15px 0 12px;
+    }
+    .day-gallery figure { position:relative; min-width:0; margin:0; overflow:hidden; border-radius:6px; background:#dfe9e6; }
+    .day-gallery figure:first-child { grid-row:1/3; }
+    .day-gallery.two { grid-template-columns:1fr 1fr; grid-template-rows:270px; }
+    .day-gallery.two figure:first-child { grid-row:auto; }
+    .day-gallery img { width:100%; height:100%; display:block; object-fit:cover; cursor:zoom-in; transition:transform .4s ease; }
+    .day-gallery figure:hover img { transform:scale(1.025); }
+    .day-gallery figcaption {
+      position:absolute; z-index:1; right:0; bottom:0; left:0; padding:28px 12px 10px;
+      color:white; background:linear-gradient(transparent,rgba(5,23,30,.82)); font-size:12px; font-weight:800;
+    }
     .food-gallery {
       display: grid;
       grid-template-columns: 1.15fr .85fr;
@@ -736,6 +753,20 @@
       background: #dfe9e6;
     }
     .planning-visual img { object-position: center 55%; }
+    .hotel-visual {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      height:310px;
+      gap:8px;
+      margin:30px 0 24px;
+    }
+    .hotel-visual figure { position:relative; min-width:0; margin:0; overflow:hidden; border-radius:7px; background:#dfe9e6; }
+    .hotel-visual img { width:100%; height:100%; display:block; object-fit:cover; cursor:zoom-in; transition:transform .4s ease; }
+    .hotel-visual figure:hover img { transform:scale(1.025); }
+    .hotel-visual figcaption {
+      position:absolute; right:0; bottom:0; left:0; padding:36px 12px 11px;
+      color:white; background:linear-gradient(transparent,rgba(5,23,30,.82)); font-size:12px; font-weight:850;
+    }
     .image-credit {
       width: min(1120px, calc(100% - 32px));
       margin: 0 auto;
@@ -745,6 +776,82 @@
       color: rgba(255,255,255,.55);
     }
     .image-credit a { color: rgba(255,255,255,.76); }
+    .ui-bar, .day-tabs { display:flex; flex-wrap:wrap; gap:7px; margin:0 0 22px; align-items:center; }
+    .trip-explorer {
+      width:min(1120px,calc(100% - 32px)); margin:48px auto 18px; padding:0;
+      display:grid; grid-template-columns:.78fr 1.22fr; min-height:430px;
+      overflow:hidden; border:1px solid var(--line); border-radius:8px; background:white; box-shadow:var(--shadow);
+    }
+    .explorer-copy { padding:30px; display:grid; align-content:center; }
+    .explorer-copy small { color:var(--orange); font-weight:900; letter-spacing:1px; }
+    .explorer-copy h2 { margin:9px 0 10px; font-size:clamp(27px,4vw,43px); line-height:1.15; }
+    .explorer-copy p { margin:0 0 18px; color:var(--muted); }
+    .explorer-tabs { display:flex; flex-wrap:wrap; gap:7px; }
+    .explorer-tabs .ui-button { border-color:#9abfba; box-shadow:0 2px 0 rgba(10,69,78,.08); transition:transform .18s ease,box-shadow .18s ease; }
+    .explorer-tabs .ui-button:hover { transform:translateY(-2px); box-shadow:0 5px 12px rgba(10,69,78,.14); }
+    .explorer-hint { display:flex; align-items:center; gap:7px; margin:0 0 10px; color:var(--blue); font-size:12px; font-weight:850; }
+    .explorer-hint::before { content:"↙"; display:grid; place-items:center; width:24px; height:24px; border-radius:50%; color:white; background:var(--orange); animation:hintPulse 1.8s ease-in-out infinite; }
+    @keyframes hintPulse { 50% { transform:translateY(3px); box-shadow:0 0 0 6px rgba(236,111,55,.13); } }
+    .explorer-detail { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:20px; }
+    .explorer-detail div { padding:10px; border-left:3px solid var(--green); background:#f4f8f6; font-size:12px; color:var(--muted); }
+    .explorer-detail b { display:block; color:var(--ink); font-size:13px; }
+    .explorer-media { position:relative; min-height:430px; background:#dce9e7; }
+    .explorer-media img { width:100%; height:100%; position:absolute; inset:0; object-fit:cover; transition:opacity .25s ease; }
+    .explorer-media::after { content:""; position:absolute; inset:55% 0 0; background:linear-gradient(transparent,rgba(5,22,29,.72)); }
+    .explorer-caption { position:absolute; z-index:1; left:22px; right:22px; bottom:18px; color:white; font-size:14px; }
+    .explorer-caption strong { display:block; font-size:21px; }
+    .raw-feature {
+      display:grid; grid-template-columns:1.2fr .8fr; gap:14px; margin:0 0 28px;
+      padding:14px; border:1px solid #e2d4ca; border-radius:8px; background:#fff8f3;
+    }
+    .raw-gallery { display:grid; grid-template-columns:1.35fr .65fr; grid-template-rows:190px 190px; gap:8px; }
+    .raw-gallery figure { position:relative; margin:0; overflow:hidden; border-radius:6px; background:#e5ddd5; }
+    .raw-gallery figure:first-child { grid-row:1/3; }
+    .raw-gallery img { width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; transition:transform .35s ease; }
+    .raw-gallery figure:hover img { transform:scale(1.035); }
+    .raw-gallery figcaption { position:absolute; z-index:1; left:8px; bottom:8px; padding:5px 8px; border-radius:4px; color:white; background:rgba(28,21,18,.74); font-size:11px; font-weight:800; }
+    .raw-copy { padding:12px 10px; align-self:center; }
+    .raw-copy small { color:var(--red); font-weight:900; }
+    .raw-copy h3 { margin:6px 0 9px; font-size:27px; }
+    .raw-copy p { margin:0 0 10px; color:var(--muted); font-size:14px; }
+    .raw-rules { display:grid; gap:7px; margin-top:12px; }
+    .raw-rules span { padding:8px 10px; border-radius:5px; background:white; color:#603c31; font-size:12px; font-weight:700; }
+    .day-tabs { flex-wrap:nowrap; overflow-x:auto; padding-bottom:4px; }
+    .ui-button {
+      min-height:38px; padding:0 13px; border:1px solid var(--line); border-radius:6px;
+      color:var(--muted); background:white; font:inherit; font-weight:750; cursor:pointer; white-space:nowrap;
+    }
+    .ui-button.active { color:white; border-color:var(--blue); background:var(--blue); }
+    .ui-label { color:var(--muted); font-size:13px; font-weight:750; }
+    .mode-switch { margin-left:auto; display:flex; gap:5px; }
+    .day.is-filtered, .hotel.is-filtered { display:none; }
+    .budget-calculator {
+      display:grid; grid-template-columns:repeat(5,minmax(110px,1fr)); gap:12px;
+      margin-bottom:22px; padding:18px; border:1px solid var(--line); border-top:5px solid var(--blue);
+      border-radius:8px; background:white;
+    }
+    .budget-calculator label { display:grid; gap:5px; color:var(--muted); font-size:12px; font-weight:700; }
+    .budget-calculator input { min-width:0; padding:9px 10px; border:1px solid var(--line); border-radius:6px; font:inherit; }
+    .budget-result { grid-column:1/-1; display:flex; justify-content:space-between; padding-top:10px; border-top:1px solid var(--line); }
+    .budget-result strong { color:var(--orange); font-size:22px; }
+    .check-item { display:flex; gap:9px; align-items:flex-start; margin:0 0 10px; break-inside:avoid; color:var(--muted); cursor:pointer; }
+    .check-item input { margin-top:5px; accent-color:var(--green); }
+    .check-item.done span { opacity:.55; text-decoration:line-through; }
+    .copy-button { margin-left:5px; padding:4px 7px; border:1px solid var(--line); border-radius:5px; color:var(--blue); background:white; font:inherit; font-size:11px; cursor:pointer; }
+    .lightbox { position:fixed; z-index:50; inset:0; display:none; place-items:center; padding:24px; background:rgba(5,18,24,.93); }
+    .lightbox.open { display:grid; }
+    .lightbox figure { width:min(1100px,92vw); margin:0; }
+    .lightbox img { width:100%; max-height:78vh; object-fit:contain; display:block; }
+    .lightbox figcaption { padding-top:12px; color:white; text-align:center; }
+    .lightbox button { position:fixed; width:44px; height:44px; border:1px solid rgba(255,255,255,.4); border-radius:50%; color:white; background:rgba(0,0,0,.3); font-size:25px; cursor:pointer; }
+    .lightbox-close { top:18px; right:18px; }
+    .lightbox-prev { left:18px; top:50%; }
+    .lightbox-next { right:18px; top:50%; }
+    .photo-tile img,.day-photo img,.food-photo img,.destination-shot img { cursor:zoom-in; }
+    body.on-trip #overview,body.on-trip #culture,body.on-trip #food,body.on-trip #hotels,body.on-trip #budget { display:none; }
+    body.on-trip .hero { min-height:48vh; }
+    .mode-note { display:none; margin-bottom:18px; padding:10px 12px; border-radius:6px; color:#27543f; background:#eaf5ef; font-size:13px; font-weight:700; }
+    body.on-trip .mode-note { display:block; }
     .destination-gallery {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -825,15 +932,28 @@
       .photo-story { grid-template-columns: 1fr; grid-template-rows: repeat(4, 220px); }
       .photo-tile:last-child { grid-column: auto; }
       .day-photo { height: 210px; }
+      .day-gallery, .day-gallery.two { grid-template-columns:1fr 1fr; grid-template-rows:210px 150px; }
+      .day-gallery figure:first-child, .day-gallery.two figure:first-child { grid-column:1/3; grid-row:auto; }
       .food-gallery { grid-template-columns: 1fr; }
       .food-photo { height: 250px; }
       .planning-visual { height: 230px; }
+      .hotel-visual { grid-template-columns:1fr 1fr; height:auto; }
+      .hotel-visual figure { height:210px; }
       .destination-gallery { grid-template-columns: 1fr; grid-auto-rows: 230px; }
       .destination-shot, .destination-shot.wide { grid-column: auto; }
       .food-atlas { grid-template-columns: 1fr 1fr; }
       .food-atlas .food-photo,
       .food-atlas .food-photo:first-child,
       .food-atlas .food-photo:nth-child(6) { grid-column: auto; height: 210px; }
+      .mode-switch { margin-left:0; width:100%; }
+      .budget-calculator { grid-template-columns:1fr 1fr; }
+      .budget-result { display:grid; gap:6px; }
+      .trip-explorer { grid-template-columns:1fr; margin-top:28px; }
+      .explorer-media { min-height:300px; order:-1; }
+      .explorer-copy { padding:22px 18px; }
+      .explorer-detail { grid-template-columns:1fr; }
+      .raw-feature { grid-template-columns:1fr; }
+      .raw-gallery { grid-template-rows:180px 180px; }
     }
   </style>
 </head>
@@ -858,6 +978,30 @@
     <div><small>FOR FOOD</small><strong>顺德菜与潮汕烟火气</strong></div>
     <div><small>FOR MEMORY</small><strong>灯塔、沙滩和夏日海风</strong></div>
   </div>
+
+  <section class="trip-explorer" id="explorer">
+    <div class="explorer-copy">
+      <small>INTERACTIVE TRIP PREVIEW</small>
+      <h2 id="explorerTitle">先从鲸鲨馆开始</h2>
+      <p id="explorerText">选一个目的地，马上查看这一站最值得期待的画面、交通与餐食。</p>
+      <div class="explorer-hint">点选目的地，图片与安排会同步切换</div>
+      <div class="explorer-tabs" aria-label="选择目的地">
+        <button class="ui-button active" type="button" data-explore="zhuhai">珠海长隆</button>
+        <button class="ui-button" type="button" data-explore="shunde">顺德</button>
+        <button class="ui-button" type="button" data-explore="shantou">汕头</button>
+        <button class="ui-button" type="button" data-explore="nanao">南澳岛</button>
+      </div>
+      <div class="explorer-detail">
+        <div><b>怎么玩</b><span id="explorerPlay">鲸鲨馆、企鹅馆、剧场</span></div>
+        <div><b>怎么去</b><span id="explorerRide">广州南专车到横琴</span></div>
+        <div><b>吃什么</b><span id="explorerEat">园区简餐，晚上早点休息</span></div>
+      </div>
+    </div>
+    <div class="explorer-media">
+      <img id="explorerImage" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/ChimelongOceanKingdom%20WhaleSharkAquarium2.jpg?width=1600" alt="珠海长隆鲸鲨馆">
+      <div class="explorer-caption"><strong id="explorerCaption">孩子的蓝色高光时刻</strong><span>点击左侧目的地，画面与信息同步切换</span></div>
+    </div>
+  </section>
 
   <nav>
     <div class="inner">
@@ -886,7 +1030,7 @@
     </div>
     <div class="photo-story" aria-label="行程实景预览">
       <figure class="photo-tile">
-        <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/ChimelongOceanKingdom%20WhaleSharkAquarium2.jpg?width=1600" alt="珠海长隆海洋王国鲸鲨馆巨幕水族箱实景">
+        <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/11144-Ocean-Kingdom.jpg?width=1600" alt="珠海长隆海洋王国园区与海洋主题建筑实景">
         <figcaption class="photo-caption"><strong>珠海长隆 · 鲸鲨馆巨幕</strong><span>真正置身蓝色海洋，先把全程最震撼的一幕留给孩子</span></figcaption>
       </figure>
       <figure class="photo-tile">
@@ -898,8 +1042,8 @@
         <figcaption class="photo-caption"><strong>南澳岛 · 长山尾</strong><span>跨过大桥，海岛章节正式开始</span></figcaption>
       </figure>
       <figure class="photo-tile">
-        <img loading="lazy" src="guangdong-trip-illustration.png" alt="广东家庭旅行插画">
-        <figcaption class="photo-caption"><strong>一路向东</strong><span>实景为主，插画只做章节之间的情绪过渡</span></figcaption>
+        <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Train%20in%20China%20DSC%206788%20%289314778882%29.jpg?width=1200" alt="中国高铁列车沿途实景">
+        <figcaption class="photo-caption"><strong>一路向东</strong><span>高铁连接顺德与潮汕，长距离移动尽量交给铁路</span></figcaption>
       </figure>
     </div>
     <div class="notice">规划时间为 2026 年 7 月 8 日。8 月初高铁票和部分航班价格需等 7 月中下旬正式核准，酒店价格也会随暑期库存变化。</div>
@@ -936,6 +1080,10 @@
         <div class="day-label"><strong>D1</strong><span>8 月 2 日 周日<br>武汉到珠海横琴</span></div>
         <div class="day-body">
           <h3>高铁南下，到长隆先安顿下来</h3>
+          <div class="day-gallery two">
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/20230223%20G79%20at%20Wuhan%20Station.jpg?width=1200" alt="武汉站复兴号高铁实景"><figcaption>从武汉站出发，正式进入旅行状态</figcaption></figure>
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Guangzhou%20South%20railway%20station.jpg?width=1200" alt="广州南站实景"><figcaption>抵达广州南，再专车直达横琴</figcaption></figure>
+          </div>
           <div class="time-grid">
             <div class="time-box"><b>上午</b><p>参考 G1003：武汉 07:31 出发，11:54 到广州南。</p></div>
             <div class="time-box"><b>下午</b><p>建议广州南约 12:30 专车直达横琴，预计 15:00 左右入住；比继续换乘城际更适合带孩子和行李。</p></div>
@@ -949,9 +1097,10 @@
         <div class="day-label"><strong>D2</strong><span>8 月 3 日 周一<br>珠海长隆</span></div>
         <div class="day-body">
           <h3>海洋王国一整天：动物、剧场和夜间表演</h3>
-          <div class="day-photo">
-            <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/ChimelongOceanKingdom%20WhaleSharkAquarium2.jpg?width=1400" alt="长隆海洋王国鲸鲨水族箱">
-            <div class="photo-caption"><strong>今日高光：鲸鲨从头顶游过</strong><span>上午优先进入室内大馆，避开午后高温和人流</span></div>
+          <div class="day-gallery">
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/ChimelongOceanKingdom%20WhaleSharkAquarium3.jpg?width=1400" alt="长隆鲸鲨馆鲸鲨实景"><figcaption>鲸鲨馆：全程最有冲击力的一幕</figcaption></figure>
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/11122-Ocean-Kingdom.jpg?width=900" alt="珠海长隆海洋王国动物场馆"><figcaption>海洋动物场馆</figcaption></figure>
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/11138-Ocean-Kingdom.jpg?width=900" alt="珠海长隆海洋王国园区实景"><figcaption>巡游与园区氛围</figcaption></figure>
           </div>
           <div class="time-grid">
             <div class="time-box"><b>上午</b><p>9:30 前入园，先去鲸鲨馆、企鹅馆、北极熊馆等室内大馆。</p></div>
@@ -966,6 +1115,11 @@
         <div class="day-label"><strong>D3</strong><span>8 月 4 日 周二<br>长隆到顺德</span></div>
         <div class="day-body">
           <h3>上午放慢，下午去顺德吃一顿正式晚餐</h3>
+          <div class="day-gallery">
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Yusheng%20%28%20in%20Shunde%2C%20Guangdong%29.jpg?width=1200" alt="顺德鱼生与配料实拍"><figcaption>顺德鱼生：薄切鱼片搭配丰富佐料</figcaption></figure>
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Shunde%20steamed%20chicken%20at%20Guangzhou%20Shunde%20Restaurant%2C%20Beijing%20%2820211112155406%29.jpg?width=900" alt="顺德桑拿鸡实拍"><figcaption>桑拿鸡</figcaption></figure>
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/GD%20%E5%BB%A3%E6%9D%B1%20Guangdong%20%E4%BD%9B%E5%B1%B1%20Foshan%20%E9%A0%86%E5%BE%B7%20Shunde%20%E8%8F%AF%E8%93%8B%E8%B7%AF%20Huagai%20Road%20shop%20%E6%B0%91%E4%BF%A1%E8%80%81%E5%BA%97%20Minxin%20Lao%20Dian%20%E7%94%9C%E5%93%81%20Dessert%20white%20food%20%E9%9B%99%E7%9A%AE%E7%87%89%E5%A5%B6%20Double%20skin%20milk%20bowels%20January%202024%20R12S%2001.jpg?width=900" alt="顺德民信老铺双皮奶实拍"><figcaption>大良双皮奶</figcaption></figure>
+          </div>
           <div class="time-grid">
             <div class="time-box"><b>上午</b><p>睡到自然醒，酒店早餐、泳池，或半日补飞船乐园。</p></div>
             <div class="time-box"><b>下午</b><p>横琴专车去顺德大良，约 2 小时，入住后休息。</p></div>
@@ -979,9 +1133,9 @@
         <div class="day-label"><strong>D4</strong><span>8 月 5 日 周三<br>顺德到汕头</span></div>
         <div class="day-body">
           <h3>园林和花草半日，下午转去潮汕</h3>
-          <div class="day-photo">
-            <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Qinghui%20Garden%2010.jpg?width=1400" alt="清晖园亭台池水与花木">
-            <div class="photo-caption"><strong>清晖园：一座可以慢慢找细节的园林</strong><span>让孩子观察锦鲤、花窗、假山和不同形状的门洞</span></div>
+          <div class="day-gallery two">
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Qinghui%20Garden%2010.jpg?width=1400" alt="清晖园亭台池水与花木"><figcaption>清晖园：找锦鲤、花窗和不同形状的门洞</figcaption></figure>
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Guangzhou%20South%20Railway%20Station%20Platform%20CRH3%20EMU.jpg?width=1200" alt="广州南站高铁站台实景"><figcaption>下午乘高铁转向粤东汕头</figcaption></figure>
           </div>
           <div class="time-grid">
             <div class="time-box"><b>上午</b><p>清晖园看岭南园林；如果孩子更想看花草，可换顺峰山公园。</p></div>
@@ -996,6 +1150,10 @@
         <div class="day-label"><strong>D5</strong><span>8 月 6 日 周四<br>汕头市区</span></div>
         <div class="day-body">
           <h3>潮汕味道和小公园老城</h3>
+          <div class="day-gallery two">
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/China-shantou01.jpg?width=1100" alt="汕头城市与老城区实景"><figcaption>汕头老城：骑楼、街巷与港口城市气质</figcaption></figure>
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Chaoshan%20Beef%20Hot%20Pot%20at%20Baheli%20Haiji%2C%20ZGC1%20%2820221003132726%29.jpg?width=1100" alt="潮汕鲜切牛肉火锅实拍"><figcaption>熟食主场：全家共享潮汕牛肉火锅</figcaption></figure>
+          </div>
           <div class="time-grid">
             <div class="time-box"><b>上午</b><p>小公园开埠区、骑楼街区，感受汕头老城和港口城市气质。</p></div>
             <div class="time-box"><b>下午</b><p>酒店午休，避开高温；傍晚去海滨路或广场轮渡。</p></div>
@@ -1009,9 +1167,10 @@
         <div class="day-label"><strong>D6</strong><span>8 月 7 日 周五<br>汕头到南澳岛</span></div>
         <div class="day-body">
           <h3>上岛看灯塔、海湾和沙滩</h3>
-          <div class="day-photo">
-            <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/%E5%8D%97%E6%BE%B3%E5%B3%B6%E9%8C%A2%E6%BE%B3%E7%81%A3%E7%87%88%E5%A1%94%20Qian%27ao%20Bay%20Lighthouse%2C%20Nan%27ao%20Island.jpg?width=1400" alt="南澳岛钱澳湾灯塔">
-            <div class="photo-caption"><strong>海岛地标：钱澳湾灯塔</strong><span>真正的赶海时间仍要按当天潮汐重新排列</span></div>
+          <div class="day-gallery">
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/20230204%20Qing%27ao%20Beach%2C%20Nan%27ao%20County.jpg?width=1400" alt="南澳岛青澳湾沙滩实景"><figcaption>青澳湾：玩沙、踏浪和海边散步</figcaption></figure>
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/%E5%8D%97%E6%BE%B3%E5%B3%B6%E9%95%B7%E5%B1%B1%E5%B0%BE%E7%87%88%E5%A1%94%20Changshanwei%20Lighthouse%2C%20Nan%27ao%20Island.jpg?width=900" alt="南澳岛长山尾灯塔实景"><figcaption>长山尾灯塔</figcaption></figure>
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/%E5%8D%97%E6%BE%B3%E5%B3%B6%E5%BD%A9%E8%99%B9%E6%B5%B7%E7%94%9F%E8%A0%94%E9%A4%8A%E6%AE%96%E5%A0%B4%20Oyster%20Farms%2C%20Nan%27ao%20Island.jpg?width=900" alt="南澳岛彩虹海生蚝养殖场实景"><figcaption>海上养殖区</figcaption></figure>
           </div>
           <div class="time-grid">
             <div class="time-box"><b>上午</b><p>包车从汕头去南澳岛，先看长山尾灯塔和南澳大桥视角。</p></div>
@@ -1026,6 +1185,10 @@
         <div class="day-label"><strong>D7</strong><span>8 月 8 日 周六<br>南澳返程</span></div>
         <div class="day-body">
           <h3>海边收尾，买伴手礼后回武汉</h3>
+          <div class="day-gallery two">
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/%E5%8D%97%E6%BE%B3%E5%B2%9B%E6%B5%B7%E8%BE%B9%20-%20panoramio.jpg?width=1200" alt="南澳岛海边实景"><figcaption>最后一次看海，把上午留得轻松一些</figcaption></figure>
+            <figure><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Assorted%20Teochew%20kueh.jpg?width=1100" alt="潮汕粿品与特色食品"><figcaption>返程采购：粿品、茶、饼食和沙茶酱</figcaption></figure>
+          </div>
           <div class="time-grid">
             <div class="time-box"><b>上午</b><p>海边散步或补一个短赶海，随后退房。</p></div>
             <div class="time-box"><b>中午</b><p>回汕头市区采购伴手礼：牛肉丸、单丛茶、腐乳饼、沙茶酱。</p></div>
@@ -1044,7 +1207,7 @@
     </div>
     <div class="destination-gallery" aria-label="目的地高清实景图集">
       <figure class="destination-shot wide">
-        <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/ChimelongOceanKingdom%20WhaleSharkAquarium3.jpg?width=1400" alt="珠海长隆鲸鲨馆">
+        <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/11148-Ocean-Kingdom.jpg?width=1400" alt="珠海长隆海洋王国实景">
         <figcaption class="photo-caption"><strong>珠海长隆 · 蓝色世界</strong><span>鲸鲨馆是孩子的视觉高光</span></figcaption>
       </figure>
       <figure class="destination-shot">
@@ -1089,10 +1252,27 @@
       <h2>顺德吃功夫，潮汕吃鲜活</h2>
       <p>顺德适合吃鱼生、河鲜和顺德菜；如果想吃海鲜、生腌、海岛风味，汕头和南澳更合适。孩子全程以熟食为主。</p>
     </div>
+    <article class="raw-feature">
+      <div class="raw-gallery" aria-label="潮汕生腌实拍">
+        <figure><img loading="lazy" src="https://ak-d.tripcdn.com/images/0105u12000myyk67j7956_D_1600_900_R5.jpg?proc=autoorient" alt="汕头潮汕生腌海鲜拼盘实拍"><figcaption>生腌海鲜拼盘</figcaption></figure>
+        <figure><img loading="lazy" src="https://ak-d.tripcdn.com/images/1tx0q12000gmyzxys1A8C_D_300_200_R5.jpg" alt="汕头生腌三目蟹实拍"><figcaption>生腌三目蟹</figcaption></figure>
+        <figure><img loading="lazy" src="https://ak-d.tripcdn.com/images/0106w12000frbtp3kFA9C_D_300_200_R5.jpg" alt="汕头生腌活虾实拍"><figcaption>生腌活虾</figcaption></figure>
+      </div>
+      <div class="raw-copy">
+        <small>汕头重点体验 · 只建议大人尝鲜</small>
+        <h3>潮汕生腌</h3>
+        <p>虾、蟹和贝类以酱油、蒜、辣椒、香菜等腌渍，追求鲜、嫩和浓烈的海味。安排在汕头市区晚餐，比在顺德吃海鲜更符合地域特色。</p>
+        <div class="raw-rules">
+          <span>大人先点小份，不空腹，不与冰饮同吃</span>
+          <span>两个孩子不吃生腌，改吃砂锅粥、蒸海鲜和粿条</span>
+          <span>只选专门店、翻台快的店，当场点、当场吃</span>
+        </div>
+      </div>
+    </article>
     <div class="food-atlas" aria-label="顺德与潮汕美食图鉴">
       <figure class="food-photo">
-        <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Chaoshan%20Beef%20Hot%20Pot%20at%20Baheli%20Haiji%2C%20ZGC1%20%2820221003132726%29.jpg?width=1400" alt="潮汕鲜切牛肉火锅">
-        <figcaption class="photo-caption"><strong>潮汕牛肉火锅</strong><span>孩子也容易接受</span></figcaption>
+        <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Pigorgsoup.JPG?width=1200" alt="潮汕猪杂汤">
+        <figcaption class="photo-caption"><strong>潮汕猪杂汤</strong><span>清鲜熟食，孩子也容易接受</span></figcaption>
       </figure>
       <figure class="food-photo">
         <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Oyster%20omelette%20%E8%9A%9D%E7%83%99.jpg?width=1200" alt="潮汕蚝烙">
@@ -1107,8 +1287,8 @@
         <figcaption class="photo-caption"><strong>潮汕卤鹅</strong><span>卤香浓，适合配饭或夜粥</span></figcaption>
       </figure>
       <figure class="food-photo">
-        <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Assorted%20Teochew%20kueh.jpg?width=1000" alt="潮汕粿品">
-        <figcaption class="photo-caption"><strong>潮汕粿品</strong><span>颜色和形状都很有地方特色</span></figcaption>
+        <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Red%20peach%20cake.jpg?width=1000" alt="潮汕红桃粿">
+        <figcaption class="photo-caption"><strong>红桃粿</strong><span>颜色和形状都很有地方特色</span></figcaption>
       </figure>
       <figure class="food-photo">
         <img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Braised%20duck%20teochew.jpg?width=1200" alt="潮汕卤味">
@@ -1146,8 +1326,11 @@
       <h2>一家人住一间，行李也少折腾</h2>
       <p>两大两小可以优先看家庭房、亲子房、双床房，订前确认儿童早餐、床宽、是否可加床。以下价格为暑期预估。</p>
     </div>
-    <div class="planning-visual">
-      <img loading="lazy" src="guangdong-trip-illustration.png" alt="高铁、酒店与海岛组成的广东亲子旅行插画">
+    <div class="hotel-visual" aria-label="四地住宿实景">
+      <figure><img loading="lazy" src="https://ak-d.tripcdn.com/images/1mi2i12000mtigdpu9CF2_W_640_0_R5_Q80.jpg?proc=source%2Ftrip" alt="珠海长隆企鹅酒店实景"><figcaption>珠海 · 长隆企鹅酒店</figcaption></figure>
+      <figure><img loading="lazy" src="https://res.klook.com/image/upload/w_1265,h_791,c_fill,q_85/activities/bdgjlkxiw2ckpiy6rl9x.webp" alt="佛山顺德美的万豪酒店客房实景"><figcaption>顺德 · 美的万豪酒店</figcaption></figure>
+      <figure><img loading="lazy" src="https://ak-d.tripcdn.com/images/1mc0312000g1wioi39931_R_960_660_R5_D.jpg" alt="汕头龙光喜来登酒店实景"><figcaption>汕头 · 龙光喜来登酒店</figcaption></figure>
+      <figure><img loading="lazy" src="https://dimg04.c-ctrip.com/images/1mc4c12000s3le2bg87EF_C_750_340_Q70.jpg" alt="南澳岛青澳湾海景民宿实景"><figcaption>南澳 · 青澳湾海景房</figcaption></figure>
     </div>
     <div class="hotel-grid">
       <div class="hotel"><h3>珠海长隆企鹅酒店</h3><p>离海洋王国近，亲子氛围强，适合第一次带孩子去长隆。</p><small>约 1800-3000 元/晚</small></div>
@@ -1251,6 +1434,156 @@
       <a href="https://commons.wikimedia.org/wiki/Category:Oyster_omelette">蚝烙</a>。图片版权及署名以各文件说明页为准。
     </div>
   </footer>
+
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="图片预览">
+    <button class="lightbox-close" type="button" aria-label="关闭">×</button>
+    <button class="lightbox-prev" type="button" aria-label="上一张">‹</button>
+    <figure><img alt=""><figcaption></figcaption></figure>
+    <button class="lightbox-next" type="button" aria-label="下一张">›</button>
+  </div>
+
+  <script>
+    (() => {
+      const makeButton = (text, active = false) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "ui-button" + (active ? " active" : "");
+        button.textContent = text;
+        return button;
+      };
+
+      const explorerData = {
+        zhuhai:{title:"先从鲸鲨馆开始",text:"第一站把最有冲击力的海洋动物体验交给孩子，整天不必赶项目。",play:"鲸鲨馆、企鹅馆、剧场",ride:"广州南专车到横琴",eat:"园区简餐，晚上早点休息",caption:"孩子的蓝色高光时刻",image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/ChimelongOceanKingdom%20WhaleSharkAquarium2.jpg?width=1600"},
+        shunde:{title:"为一顿饭，值得住一晚",text:"清晖园与花木负责放慢节奏，鱼生、桑拿鸡和双皮奶负责记住顺德。",play:"清晖园或顺峰山公园",ride:"横琴专车约2小时",eat:"鱼生、桑拿鸡、双皮奶",caption:"岭南园林与一席好菜",image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Foshan%20Shunde%20Qinghui%20Yuan%202024-05-11%2017.25.34.jpg?width=1400"},
+        shantou:{title:"潮汕烟火，越夜越有味",text:"骑楼老城之后留一个完整夜晚给牛肉火锅、夜粥和大人少量尝试的生腌。",play:"小公园、骑楼、海滨路",ride:"G6329 16:46-19:54",eat:"牛肉火锅、生腌、夜粥",caption:"老城灯火与潮汕夜宵",image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Shantou%20Old%20Town%20Nightime%20%2837481223501%29.jpg?width=1400"},
+        nanao:{title:"最后一章，留给海风",text:"灯塔、沙滩和赶海不排得太满，真正的活动时间跟着天气和潮汐走。",play:"灯塔、青澳湾、亲子赶海",ride:"汕头包车约1.5-2小时",eat:"熟海鲜、紫菜炒饭、鱼丸汤",caption:"跨过大桥，抵达夏日海岛",image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/%E5%8D%97%E6%BE%B3%E5%B3%B6%E9%8C%A2%E6%BE%B3%E7%81%A3%E7%87%88%E5%A1%94%20Qian%27ao%20Bay%20Lighthouse%2C%20Nan%27ao%20Island.jpg?width=1400"}
+      };
+      document.querySelectorAll("[data-explore]").forEach(button => button.addEventListener("click", () => {
+        const data=explorerData[button.dataset.explore];
+        document.querySelectorAll("[data-explore]").forEach(item=>item.classList.toggle("active",item===button));
+        document.querySelector("#explorerTitle").textContent=data.title;
+        document.querySelector("#explorerText").textContent=data.text;
+        document.querySelector("#explorerPlay").textContent=data.play;
+        document.querySelector("#explorerRide").textContent=data.ride;
+        document.querySelector("#explorerEat").textContent=data.eat;
+        document.querySelector("#explorerCaption").textContent=data.caption;
+        const image=document.querySelector("#explorerImage"); image.style.opacity="0";
+        setTimeout(()=>{image.src=data.image;image.alt=data.caption;image.style.opacity="1";},150);
+      }));
+
+      const nav = document.querySelector("nav .inner");
+      const mode = document.createElement("span");
+      mode.className = "mode-switch";
+      const planButton = makeButton("出发前", true);
+      const tripButton = makeButton("旅途中");
+      mode.append(planButton, tripButton);
+      nav.appendChild(mode);
+      const setMode = isTrip => {
+        document.body.classList.toggle("on-trip", isTrip);
+        planButton.classList.toggle("active", !isTrip);
+        tripButton.classList.toggle("active", isTrip);
+        localStorage.setItem("gdTripMode", isTrip ? "trip" : "plan");
+      };
+      planButton.onclick = () => setMode(false);
+      tripButton.onclick = () => setMode(true);
+      setMode(localStorage.getItem("gdTripMode") === "trip");
+
+      const days = [...document.querySelectorAll(".day")];
+      const tabs = document.createElement("div");
+      tabs.className = "day-tabs";
+      const modeNote = document.createElement("div");
+      modeNote.className = "mode-note";
+      modeNote.textContent = "旅行模式已开启：页面只保留行程、路线、交通和行李清单。";
+      document.querySelector("#days .days").before(modeNote, tabs);
+      const showDay = value => {
+        days.forEach((day, index) => day.classList.toggle("is-filtered", value !== "all" && Number(value) !== index + 1));
+        tabs.querySelectorAll("button").forEach(button => button.classList.toggle("active", button.dataset.day === String(value)));
+        if (value !== "all") document.querySelector("#days").scrollIntoView({behavior:"smooth"});
+      };
+      ["all",1,2,3,4,5,6,7].forEach((value,index) => {
+        const button = makeButton(value === "all" ? "全部" : `D${value}`, index === 0);
+        button.dataset.day = value;
+        button.onclick = () => showDay(value);
+        tabs.appendChild(button);
+      });
+
+      const hotels = [...document.querySelectorAll(".hotel")];
+      const hotelBar = document.createElement("div");
+      hotelBar.className = "ui-bar";
+      hotelBar.innerHTML = '<span class="ui-label">住宿地点</span>';
+      document.querySelector("#hotels .hotel-grid").before(hotelBar);
+      [["珠海",0,4],["顺德",4,8],["汕头",8,11],["南澳",11,12]].forEach(([city,start,end]) => hotels.slice(start,end).forEach(card => card.dataset.city=city));
+      ["全部","珠海","顺德","汕头","南澳"].forEach((city,index) => {
+        const button = makeButton(city,index===0);
+        button.onclick = () => {
+          hotels.forEach(card => card.classList.toggle("is-filtered",city!=="全部"&&card.dataset.city!==city));
+          hotelBar.querySelectorAll("button").forEach(item => item.classList.toggle("active",item===button));
+        };
+        hotelBar.appendChild(button);
+      });
+
+      const calculator = document.createElement("div");
+      calculator.className = "budget-calculator";
+      const items = [["交通",9000],["住宿",12000],["门票",2200],["餐饮",6500],["伴手礼",2500]];
+      items.forEach(([name,value]) => {
+        const label = document.createElement("label");
+        label.textContent = name;
+        const input = document.createElement("input");
+        input.type = "number"; input.min = "0"; input.value = value;
+        label.appendChild(input); calculator.appendChild(label);
+      });
+      const result = document.createElement("div");
+      result.className = "budget-result";
+      calculator.appendChild(result);
+      document.querySelector("#budget .budget-grid").before(calculator);
+      const updateBudget = () => {
+        const total = [...calculator.querySelectorAll("input")].reduce((sum,input)=>sum+(Number(input.value)||0),0);
+        result.innerHTML = `<span>四人总预算 <strong>¥${total.toLocaleString("zh-CN")}</strong></span><span>人均约 <strong>¥${Math.round(total/4).toLocaleString("zh-CN")}</strong></span>`;
+      };
+      calculator.addEventListener("input",updateBudget); updateBudget();
+
+      const saved = JSON.parse(localStorage.getItem("gdTripPacking")||"{}");
+      document.querySelectorAll(".checklist p").forEach((paragraph,index) => {
+        const label = document.createElement("label"); label.className="check-item";
+        const input = document.createElement("input"); input.type="checkbox"; input.checked=Boolean(saved[index]);
+        const text = document.createElement("span"); text.innerHTML=paragraph.innerHTML;
+        label.append(input,text); label.classList.toggle("done",input.checked);
+        input.onchange=()=>{saved[index]=input.checked;localStorage.setItem("gdTripPacking",JSON.stringify(saved));label.classList.toggle("done",input.checked);};
+        paragraph.replaceWith(label);
+      });
+
+      document.querySelectorAll(".time-box p,#transport td").forEach(element => {
+        const trains = [...new Set(element.textContent.match(/\b[CGD]\d{3,4}\b/g)||[])];
+        trains.forEach(train => {
+          const button = document.createElement("button"); button.type="button"; button.className="copy-button"; button.textContent=`复制 ${train}`;
+          button.onclick=async()=>{await navigator.clipboard.writeText(train);button.textContent="已复制";setTimeout(()=>button.textContent=`复制 ${train}`,1200);};
+          element.append(" ",button);
+        });
+      });
+
+      const images = [...document.querySelectorAll(".photo-tile img,.day-photo img,.day-gallery img,.hotel-visual img,.food-photo img,.destination-shot img,.raw-gallery img")];
+      const lightbox = document.querySelector(".lightbox");
+      const preview = lightbox.querySelector("img");
+      const caption = lightbox.querySelector("figcaption");
+      let current = 0;
+      const open = index => {
+        current=(index+images.length)%images.length;
+        preview.src=images[current].src; preview.alt=images[current].alt;
+        caption.textContent=images[current].closest("figure,.day-photo")?.querySelector(".photo-caption strong")?.textContent||images[current].alt;
+        lightbox.classList.add("open"); document.body.style.overflow="hidden";
+      };
+      const close=()=>{lightbox.classList.remove("open");document.body.style.overflow="";};
+      images.forEach((image,index)=>image.onclick=()=>open(index));
+      lightbox.querySelector(".lightbox-prev").onclick=()=>open(current-1);
+      lightbox.querySelector(".lightbox-next").onclick=()=>open(current+1);
+      lightbox.querySelector(".lightbox-close").onclick=close;
+      lightbox.onclick=event=>{if(event.target===lightbox)close();};
+      document.addEventListener("keydown",event=>{if(!lightbox.classList.contains("open"))return;if(event.key==="Escape")close();if(event.key==="ArrowLeft")open(current-1);if(event.key==="ArrowRight")open(current+1);});
+
+      document.querySelectorAll(".route-step").forEach((step,index)=>step.onclick=()=>showDay([1,1,3,5,7][index]));
+      window.addEventListener("message",event=>{if(event.data?.type==="trip-stop")showDay({1:1,2:1,3:2,4:4,5:5,6:6,7:7}[event.data.stop]||"all");});
+    })();
+  </script>
 
 </body>
 </html>
