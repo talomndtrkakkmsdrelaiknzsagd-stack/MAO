@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>武汉出发广东亲子行程路线图</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    :root {
+      --ink: #18202a;
+      --muted: #657083;
+      --line: #d8dee8;
+      --accent: #0f8b8d;
+      --warm: #ec7d31;
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) 1fr;
+      min-height: 100vh;
+    }
+    aside {
+      background: var(--panel);
+      border-right: 1px solid var(--line);
+      padding: 22px 22px 26px;
+      overflow-y: auto;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+    .sub {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .summary {
+      display: grid;
+      gap: 8px;
+      margin: 0 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfd;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .summary strong { color: var(--accent); }
+    .route-list {
+      display: grid;
+      gap: 10px;
+      margin: 0 0 20px;
+    }
+    .stop {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eef1f5;
+    }
+    .num {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .stop h2 {
+      margin: 2px 0 4px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+    .stop p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .train {
+      display: inline-block;
+      margin-top: 5px;
+      padding: 4px 7px;
+      border-radius: 4px;
+      background: #eef7f6;
+      color: #087e80;
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .note {
+      border-left: 4px solid var(--warm);
+      padding: 10px 12px;
+      background: #fff8f1;
+      color: #5d3921;
+      font-size: 13px;
+      line-height: 1.6;
+      border-radius: 0 8px 8px 0;
+    }
+    #map { min-height: 100vh; width: 100%; }
+    .legend {
+      background: white;
+      padding: 10px 12px;
+      border-radius: 8px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.16);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .legend div { margin: 3px 0; }
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: -1px;
+    }
+    .pin {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50% 50% 50% 8px;
+      transform: rotate(-45deg);
+      border: 2px solid #ffffff;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.28);
+      color: white;
+      font-weight: 800;
+      font-size: 13px;
+    }
+    .pin span { transform: rotate(45deg); }
+    .pin.main { background: var(--accent); }
+    .pin.transfer { background: #536dfe; }
+    .pin.optional { background: var(--warm); }
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { border-right: 0; border-bottom: 1px solid var(--line); }
+      #map { min-height: 70vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <h1>武汉出发广东亲子行程路线图</h1>
+      <p class="sub">推荐顺序：先珠海长隆，再顺德美食，最后汕头/南澳岛。地图上蓝色点是交通中转，橙色点是顺德补充亲子点。</p>
+      <div class="summary">
+        <div><strong>核心判断：</strong>顺德不是去汕头的最短路径，但适合作为珠海到粤东前的一晚美食停靠。</div>
+        <div><strong>推荐节奏：</strong>长隆 2 晚 → 顺德 1 晚 → 汕头 2 晚 → 南澳 1 晚。</div>
+        <div><strong>不建议：</strong>顺德吃完晚餐后连夜赶汕头，带孩子和行李会太累。</div>
+      </div>
+      <div class="route-list">
+        <div class="stop"><div class="num">1</div><div><h2>武汉站</h2><p>8 月 2 日上午出发，当前运行图优先参考 G1003。</p><span class="train">G1003　07:31 → 11:54 广州南</span></div></div>
+        <div class="stop"><div class="num">2</div><div><h2>广州南站</h2><p>约 12:30 专车直达横琴，正常约 2-2.5 小时，预计 15:00 左右入住；带孩子和行李不再换乘城际。</p><span class="train">专车约 12:30 → 15:00 横琴</span></div></div>
+        <div class="stop"><div class="num">3</div><div><h2>珠海横琴长隆</h2><p>8 月 4 日约 14:30 专车出发，约 16:30 抵达顺德大良。海洋王国与亲子酒店共住 2 晚。</p><span class="train">专车约 2 小时</span></div></div>
+        <div class="stop"><div class="num">4</div><div><h2>顺德大良/清晖园</h2><p>8 月 5 日午餐后约 14:00 专车去广州南，再乘高铁到汕头。</p><span class="train">G6329　广州南 16:46 → 汕头 19:54</span></div></div>
+        <div class="stop"><div class="num">5</div><div><h2>汕头小公园/市区</h2><p>住 2 晚；8 月 7 日约 09:30 包车上南澳岛，正常约 1.5-2 小时。</p><span class="train">包车 09:30 → 11:00-11:30</span></div></div>
+        <div class="stop"><div class="num">6</div><div><h2>南澳岛青澳湾</h2><p>海岛、沙滩、赶海。需要根据当天潮汐决定赶海时间。</p></div></div>
+        <div class="stop"><div class="num">7</div><div><h2>揭阳潮汕机场</h2><p>8 月 8 日建议 12:30 前离岛，预留堵车和还车时间；优先选择 16:00 后直飞武汉的航班。</p><span class="train">具体航班待正式放票后确认</span></div></div>
+      </div>
+      <div class="note">
+        顺德吃海鲜不作为主线：顺德强在鱼生、河鲜和烹饪技法；真正的海鲜、生腌和海岛风味放在汕头/南澳更合适。
+      </div>
+    </aside>
+    <main id="map"></main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const stops = [
+      { n: 1, name: "武汉站", lat: 30.6074, lng: 114.4240, kind: "main", desc: "参考 G1003：07:31 出发，11:54 到广州南。" },
+      { n: 2, name: "广州南站", lat: 22.9899, lng: 113.2693, kind: "transfer", desc: "约 12:30 专车出发，预计 15:00 左右到横琴。" },
+      { n: 3, name: "珠海横琴长隆", lat: 22.0990, lng: 113.5400, kind: "main", desc: "长隆海洋王国，建议住 2 晚。" },
+      { n: 4, name: "顺德清晖园/大良", lat: 22.8393, lng: 113.2446, kind: "main", desc: "参考 G6329：广州南 16:46 出发，19:54 到汕头。" },
+      { n: 5, name: "汕头小公园", lat: 23.3545, lng: 116.6819, kind: "main", desc: "8 月 7 日约 09:30 包车上岛，约 11:00-11:30 抵达。" },
+      { n: 6, name: "南澳岛青澳湾", lat: 23.4483, lng: 117.0990, kind: "main", desc: "沙滩、海岛、赶海，建议住 1 晚。" },
+      { n: 7, name: "揭阳潮汕机场", lat: 23.5520, lng: 116.5030, kind: "transfer", desc: "返程点：飞武汉更省力。" }
+    ];
+
+    const optional = [
+      { n: "花", name: "顺峰山公园", lat: 22.8284, lng: 113.2844, kind: "optional", desc: "顺德亲子加点：花草、湖景、大空间，适合上午散步。" }
+    ];
+
+    const route = stops.map(s => [s.lat, s.lng]);
+    const map = L.map("map", { scrollWheelZoom: true });
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    function icon(stop) {
+      return L.divIcon({
+        className: "",
+        html: `<div class="pin ${stop.kind}"><span>${stop.n}</span></div>`,
+        iconSize: [30, 30],
+        iconAnchor: [15, 30],
+        popupAnchor: [0, -28]
+      });
+    }
+
+    stops.forEach(stop => {
+      L.marker([stop.lat, stop.lng], { icon: icon(stop) })
+        .addTo(map)
+        .bindPopup(`<strong>${stop.n}. ${stop.name}</strong><br>${stop.desc}`);
+    });
+    optional.forEach(stop => {
+      L.marker([stop.lat, stop.lng], { icon: icon(stop) })
+        .addTo(map)
+        .bindPopup(`<strong>${stop.name}</strong><br>${stop.desc}`);
+    });
+
+    L.polyline(route, {
+      color: "#0f8b8d",
+      weight: 4,
+      opacity: 0.88,
+      dashArray: "8 9"
+    }).addTo(map);
+
+    const bounds = L.latLngBounds(route.concat(optional.map(s => [s.lat, s.lng])));
+    map.fitBounds(bounds, { padding: [34, 34] });
+
+    const legend = L.control({ position: "bottomright" });
+    legend.onAdd = function () {
+      const div = L.DomUtil.create("div", "legend");
+      div.innerHTML = `
+        <div><span class="dot" style="background:#0f8b8d"></span>主要游玩/住宿点</div>
+        <div><span class="dot" style="background:#536dfe"></span>交通中转/返程点</div>
+        <div><span class="dot" style="background:#ec7d31"></span>可选亲子加点</div>
+        <div style="margin-top:6px;color:#657083">虚线为推荐行程顺序</div>
+      `;
+      return div;
+    };
+    legend.addTo(map);
+  </script>
+</body>
+</html>
