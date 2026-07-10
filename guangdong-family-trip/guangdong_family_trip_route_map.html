@@ -69,7 +69,9 @@
       align-items: start;
       padding-bottom: 10px;
       border-bottom: 1px solid #eef1f5;
+      cursor: pointer;
     }
+    .stop:hover h2 { color: var(--accent); }
     .num {
       width: 28px;
       height: 28px;
@@ -216,6 +218,13 @@
       L.marker([stop.lat, stop.lng], { icon: icon(stop) })
         .addTo(map)
         .bindPopup(`<strong>${stop.n}. ${stop.name}</strong><br>${stop.desc}`);
+    });
+    document.querySelectorAll(".stop").forEach((element, index) => {
+      element.addEventListener("click", () => {
+        const stop = stops[index];
+        map.setView([stop.lat, stop.lng], 9, { animate: true });
+        window.parent.postMessage({ type: "trip-stop", stop: stop.n }, "*");
+      });
     });
     optional.forEach(stop => {
       L.marker([stop.lat, stop.lng], { icon: icon(stop) })
